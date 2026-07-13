@@ -36,9 +36,9 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-scroll-area": "^1.0.5",
-    "@it-master-ai/ui": "*",
-    "@it-master-ai/types": "*",
-    "@it-master-ai/utils": "*"
+    "@it-master-ai/ui": "workspace:*",
+    "@it-master-ai/types": "workspace:*",
+    "@it-master-ai/utils": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",

@@ -1,3 +1,5 @@
+import { User, GradeLevel } from './auth';
+
 export interface Profile extends User {
   certificates: Certificate[];
   settings: UserSettings;

@@ -1,3 +1,2 @@
-export { apiClient } from './client';
-export { api } from './endpoints';
-export type { } from './client';
+export { createApiClient, createApiMethods, setApiBaseUrl } from './client';
+export { createApiEndpoints } from './endpoints';

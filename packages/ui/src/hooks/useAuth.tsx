@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import type { User, AuthTokens, LoginCredentials, RegisterData, GradeLevel } from '@it-master-ai/types';
-import { api } from '@it-master-ai/utils';
+import type { User, AuthTokens, LoginCredentials, RegisterData } from '@it-master-ai/types';
 
 interface AuthContextType {
   user: User | null;
@@ -9,12 +8,19 @@ interface AuthContextType {
   login: (credentials: LoginCredentials) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
   logout: () => void;
-  updateUser: (user: Partial<User>) => void;
+  updateUser: (userData: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+interface AuthProviderProps {
+  children: ReactNode;
+  apiClient: {
+    post: <T>(url: string, data: unknown) => Promise<{ data: { success: boolean; data?: { user: User; tokens: AuthTokens }; message?: string } }>;
+  };
+}
+
+export function AuthProvider({ children, apiClient }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -41,7 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (credentials: LoginCredentials) => {
     setIsLoading(true);
     try {
-      const response = await api.post<{ user: User; tokens: AuthTokens }>('/auth/login', credentials);
+      const response = await apiClient.post<{ user: User; tokens: AuthTokens }>('/auth/login', credentials);
       if (response.data.success && response.data.data) {
         const { user: userData, tokens } = response.data.data;
         localStorage.setItem('accessToken', tokens.accessToken);
@@ -62,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (data: RegisterData) => {
     setIsLoading(true);
     try {
-      const response = await api.post<{ user: User; tokens: AuthTokens }>('/auth/register', data);
+      const response = await apiClient.post<{ user: User; tokens: AuthTokens }>('/auth/register', data);
       if (response.data.success && response.data.data) {
         const { user: userData, tokens } = response.data.data;
         localStorage.setItem('accessToken', tokens.accessToken);
