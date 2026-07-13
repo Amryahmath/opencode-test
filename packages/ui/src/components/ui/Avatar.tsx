@@ -25,6 +25,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     };
 
     const [imageError, setImageError] = React.useState(false);
+    const imgRef = React.useRef<HTMLImageElement>(null);
 
     if (!src || imageError) {
       return (
@@ -46,7 +47,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div className={cn('relative inline-block', className)} {...props}>
         <img
-          ref={ref}
+          ref={imgRef}
           src={src}
           alt={alt || fallback || 'Avatar'}
           className={cn(sizeStyles[size], shapeStyles[shape], 'object-cover')}

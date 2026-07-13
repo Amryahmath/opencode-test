@@ -7,4 +7,3 @@ export * from './useTheme';
 export * from './useClickOutside';
 export * from './useKeyboardShortcut';
 export * from './useCopyToClipboard';
-export * from './useToast';

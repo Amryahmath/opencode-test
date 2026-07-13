@@ -7,14 +7,3 @@ export { Modal, ModalTrigger, ModalContent, ModalHeader, ModalTitle, ModalDescri
 export { Toast, ToastProvider, useToast } from './Toast';
 export { Loader, Spinner, LoadingDots, Skeleton } from './Loader';
 export { ProgressBar, ProgressCircle } from './Progress';
-export { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './Accordion';
-export { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from './Dropdown';
-export { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
-export { Pagination, PaginationItem } from './Pagination';
-export { Separator } from './Separator';
-export { Switch } from './Switch';
-export { Checkbox } from './Checkbox';
-export { RadioGroup, RadioGroupItem } from './RadioGroup';
-export { Slider } from './Slider';
-export { Label } from './Label';
