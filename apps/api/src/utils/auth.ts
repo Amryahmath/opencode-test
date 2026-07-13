@@ -1,5 +1,5 @@
 // apps/api/src/utils/auth.ts
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { env } from '../config/env';
 import type { JwtPayload, User, AuthTokens } from '@it-master-ai/types';
@@ -11,8 +11,8 @@ export function generateTokens(user: User): AuthTokens {
     role: user.role,
   };
 
-  const accessToken = jwt.sign(payload, env.JWT_SECRET, { expiresIn: env.JWT_EXPIRES_IN });
-  const refreshToken = jwt.sign({ ...payload, type: 'refresh' }, env.JWT_SECRET, { expiresIn: env.JWT_REFRESH_EXPIRES_IN });
+  const accessToken = jwt.sign(payload, env.JWT_SECRET, { expiresIn: env.JWT_EXPIRES_IN } as SignOptions);
+  const refreshToken = jwt.sign({ ...payload, type: 'refresh' }, env.JWT_SECRET, { expiresIn: env.JWT_REFRESH_EXPIRES_IN } as SignOptions);
 
   return { accessToken, refreshToken, expiresIn: 15 * 60 };
 }

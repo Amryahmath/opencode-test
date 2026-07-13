@@ -59,4 +59,5 @@ export interface JwtPayload {
   role: UserRole;
   iat: number;
   exp: number;
+  type?: 'access' | 'refresh';
 }

@@ -87,3 +87,7 @@ export function getGradeById(id: string): Grade | undefined {
 export function getGradeByLevel(level: number): Grade | undefined {
   return grades.find(g => g.level === level);
 }
+
+export function getAllGrades(): Grade[] {
+  return grades;
+}
