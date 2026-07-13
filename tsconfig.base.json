@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@it-master-ai/types/*": ["packages/types/src/*"],
+      "@it-master-ai/utils/*": ["packages/utils/src/*"],
+      "@it-master-ai/ui/*": ["packages/ui/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build", ".turbo"]
+}
