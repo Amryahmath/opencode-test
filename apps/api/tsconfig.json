@@ -13,7 +13,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["express", "node", "jsonwebtoken", "bcryptjs", "cors", "morgan"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
