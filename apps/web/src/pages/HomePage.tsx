@@ -1,29 +1,67 @@
 import { Link } from 'react-router-dom';
-import { Bot, Sparkles, BookOpen, Bot as BotIcon, CheckCircle, TrendingUp, Award, Users, ArrowRight, Target, Shield, Zap, GraduationCap, Brain, Code, Database, Globe, Lock, Layers } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Bot, BookOpen, Zap, Users, Award, TrendingUp, ArrowRight, CheckCircle, Play, Sparkles, Shield, Shield as ShieldIcon, Zap as ZapIcon, Layers, Lock, Brain, Code, Database, Globe, Lock as LockIcon } from 'lucide-react';
 import { Button } from '@it-master-ai/ui';
-
-const features = [
-  { icon: Brain, title: 'AI-Powered Learning', description: 'Personalized learning paths that adapt to your pace and style with our advanced AI tutor.', color: 'from-primary-500 to-primary-600' },
-  { icon: Code, title: 'Interactive Coding', description: 'Write, run, and debug code directly in the browser with instant feedback and AI assistance.', color: 'from-secondary-500 to-secondary-600' },
-  { icon: Database, title: 'Comprehensive Curriculum', description: 'Grade 6-11 aligned curriculum covering programming, databases, networks, and cybersecurity.', color: 'from-accent-500 to-accent-600' },
-  { icon: Globe, title: 'Global Community', description: 'Join thousands of students worldwide, compete in challenges, and collaborate on projects.', color: 'from-primary-500 to-secondary-500' },
-];
+import { motion } from 'framer-motion';
 
 const stats = [
-  { label: 'Students', value: '50,000+', icon: Users },
-  { label: 'Lessons', value: '500+', icon: BookOpen },
-  { label: 'Quizzes', value: '1,000+', icon: CheckCircle },
-  { label: 'AI Questions', value: '1M+', icon: BotIcon },
+  { label: 'Students Learning', value: '50,000+', icon: Users, color: 'text-primary-600' },
+  { label: 'Lessons Completed', value: '500,000+', icon: BookOpen, color: 'text-secondary-600' },
+  { label: 'Quizzes Taken', value: '1,000,000+', icon: Award, color: 'text-accent-600' },
+  { label: 'AI Questions Answered', value: '10,000,000+', icon: Bot, color: 'text-green-600' },
+];
+
+const features = [
+  {
+    title: 'AI-Powered Tutor',
+    description: 'Get instant help with any IT concept. Our AI tutor explains topics in simple terms, provides examples, and guides you through problems step by step.',
+    icon: Bot,
+    color: 'from-primary-500 to-primary-600',
+    bgColor: 'bg-primary-50 dark:bg-primary-900/20',
+  },
+  {
+    title: 'Interactive Lessons',
+    description: 'Learn through engaging multimedia content including videos, interactive coding exercises, diagrams, and real-world projects.',
+    icon: Play,
+    color: 'from-secondary-500 to-secondary-600',
+    bgColor: 'bg-secondary-50 dark:bg-secondary-900/20',
+  },
+  {
+    title: 'Smart Practice',
+    description: 'Adaptive practice questions that adjust to your skill level. Get immediate feedback and detailed explanations for every answer.',
+    icon: Zap,
+    color: 'from-accent-500 to-accent-600',
+    bgColor: 'bg-accent-50 dark:bg-accent-900/20',
+  },
+  {
+    title: 'Gamified Quizzes',
+    description: 'Test your knowledge with timed quizzes, earn badges, climb leaderboards, and track your progress across all grades.',
+    icon: Award,
+    color: 'from-green-500 to-green-600',
+    bgColor: 'bg-green-50 dark:bg-green-900/20',
+  },
+  {
+    title: 'Progress Tracking',
+    description: 'Visual dashboards show your learning journey. Track completed lessons, quiz scores, study streaks, and AI usage.',
+    icon: TrendingUp,
+    color: 'from-purple-500 to-purple-600',
+    bgColor: 'bg-purple-50 dark:bg-purple-900/20',
+  },
+  {
+    title: 'Curriculum Aligned',
+    description: 'All content follows Grade 6-11 IT curriculum standards. Modules cover programming, databases, networks, cybersecurity, and more.',
+    icon: BookOpen,
+    color: 'from-blue-500 to-blue-600',
+    bgColor: 'bg-blue-50 dark:bg-blue-900/20',
+  },
 ];
 
 const grades = [
-  { grade: 6, title: 'Foundations', topics: 'Basic Computing, Digital Citizenship, Intro to Coding', color: 'from-green-500 to-green-600', icon: GraduationCap },
-  { grade: 7, title: 'Programming Basics', topics: 'Variables, Loops, Conditionals, Scratch/Python', color: 'from-blue-500 to-blue-600', icon: Code },
-  { grade: 8, title: 'Data & Logic', topics: 'Data Structures, Algorithms, Binary, Logic Gates', color: 'from-purple-500 to-purple-600', icon: Database },
-  { grade: 9, title: 'Web Development', topics: 'HTML/CSS/JS, Responsive Design, Intro to Frameworks', color: 'from-pink-500 to-pink-600', icon: Globe },
-  { grade: 10, title: 'Advanced Topics', topics: 'Databases, APIs, Version Control, Testing', color: 'from-orange-500 to-orange-600', icon: Layers },
-  { grade: 11, title: 'Specialization', topics: 'Cybersecurity, AI/ML, Cloud, Capstone Project', color: 'from-red-500 to-red-600', icon: Lock },
+  { grade: 6, title: 'Foundations', topics: 'Basic Computing, Digital Citizenship, Intro to Coding', color: 'from-green-500 to-emerald-500', icon: GraduationCap },
+  { grade: 7, title: 'Programming Basics', topics: 'Variables, Loops, Conditionals, Scratch/Python', color: 'from-blue-500 to-cyan-500', icon: Code },
+  { grade: 8, title: 'Data & Logic', topics: 'Data Structures, Algorithms, Binary, Logic Gates', color: 'from-purple-500 to-violet-500', icon: Database },
+  { grade: 9, title: 'Web Development', topics: 'HTML/CSS/JS, Responsive Design, Intro to Frameworks', color: 'from-pink-500 to-rose-500', icon: Globe },
+  { grade: 10, title: 'Advanced Programming', topics: 'OOP, Databases, APIs, Version Control, Testing', color: 'from-orange-500 to-amber-500', icon: Layers },
+  { grade: 11, title: 'Specialization Tracks', topics: 'Cybersecurity, AI/ML, Cloud Basics, Capstone Project', color: 'from-red-500 to-pink-500', icon: Lock },
 ];
 
 const testimonials = [
@@ -36,7 +74,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary-50 via-white to-secondary-50 dark:from-dark-bg dark:via-dark-bg dark:to-dark-card pt-20 pb-16 lg:pt-32 lg:pb-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary-50 via-white to-secondary-50 dark:from-dark-bg dark:via-dark-bg dark:to-dark-card py-20 lg:py-32">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl" />
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-500/10 rounded-full blur-3xl" />
@@ -53,24 +91,27 @@ export function HomePage() {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium mb-6">
                 <Sparkles className="h-4 w-4" />
-                <span>AI-Powered Learning for Grades 6-11</span>
+                <span>New: AI Tutor with Voice & File Support (Beta)</span>
               </div>
+
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
                 Learn Information Technology{' '}
                 <span className="gradient-text">with AI</span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-                Master programming, databases, networks, and cybersecurity with personalized AI guidance. Join 50,000+ students worldwide.
+
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+                Grade 6–11 AI Learning Platform. Master programming, databases, networks, cybersecurity, and more with personalized AI guidance.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                 <Link to="/register">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-xl font-semibold text-lg hover:from-primary-700 hover:to-secondary-700 transition-all shadow-lg shadow-primary-500/25"
                   >
+                    <Play className="h-5 w-5" />
                     Start Learning Free
-                    <ArrowRight className="h-5 w-5" />
                   </motion.button>
                 </Link>
                 <Link to="/ai-tutor">
@@ -85,17 +126,17 @@ export function HomePage() {
                 </Link>
               </div>
 
-              <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-8 text-sm text-gray-500 dark:text-gray-400">
-                <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4" />
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-1.5">
+                  <Shield className="h-5 w-5" />
                   <span>No credit card required</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Zap className="h-4 w-4" />
+                <div className="flex items-center gap-1.5">
+                  <Zap className="h-5 w-5" />
                   <span>Cancel anytime</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Award className="h-4 w-4" />
+                <div className="flex items-center gap-1.5">
+                  <Award className="h-5 w-5" />
                   <span>Certificates on completion</span>
                 </div>
               </div>
@@ -108,7 +149,7 @@ export function HomePage() {
               className="relative"
             >
               <div className="relative bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl p-4">
-                <div className="rounded-2xl bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-gray-700 p-6 min-h-[400px]">
+                <div className="relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 min-h-[400px]">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="flex gap-1.5">
                       <div className="w-3 h-3 rounded-full bg-red-500" />
@@ -164,7 +205,7 @@ export function HomePage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <stat.icon className="h-10 w-10 mx-auto text-primary-600 dark:text-primary-400 mb-3" />
+                <stat.icon className="h-10 w-10 mx-auto mb-3" style={{ color: stat.color }} />
                 <div className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</div>
                 <div className="text-gray-600 dark:text-gray-400">{stat.label}</div>
               </motion.div>
@@ -190,7 +231,7 @@ export function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -198,7 +239,8 @@ export function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group p-6 rounded-2xl bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-xl transition-all duration-300"
+                className="group p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-xl transition-all duration-300"
+                style={{ background: feature.bgColor }}
               >
                 <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 group-hover:scale-110 transition-transform`} style={{ background: feature.color }}>
                   <feature.icon className="h-6 w-6 text-white" />
@@ -206,7 +248,7 @@ export function HomePage() {
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{feature.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -240,7 +282,7 @@ export function HomePage() {
                 style={{ background: grade.color.replace('from-', 'from-').replace('to-', 'to-').replace('-500', '-500/10').replace('-600', '-600/10') }}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center`} style={{ background: grade.color.replace('-500', '-500/10').replace('-600', '-600/10') }}>
                     <grade.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -323,7 +365,7 @@ export function HomePage() {
               Ready to start your IT journey?
             </h2>
             <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of students mastering Information Technology with AI-powered personalized learning. Free to begin.
+              Join thousands of students mastering Information Technology with AI-powered personalized learning. Free to begin, no credit card required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/register">

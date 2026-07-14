@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight, CheckCircle } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -64,6 +64,9 @@ export function LoginPage() {
 
           <Card className="w-full max-w-md">
             <Card.Header className="text-center">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-primary-600 to-secondary-600 flex items-center justify-center">
+                <Sparkles className="h-7 w-7 text-white" />
+              </div>
               <Card.Title className="text-2xl">Welcome back</Card.Title>
               <Card.Description>Sign in to continue your learning journey</Card.Description>
             </Card.Header>
@@ -75,7 +78,7 @@ export function LoginPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="p-3 rounded-lg bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 text-sm flex items-center gap-2"
                 >
-                  <CheckCircle className="h-4 w-4 flex-shrink-0" />
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
                   {error}
                 </motion.div>
               )}
@@ -111,7 +114,11 @@ export function LoginPage() {
 
                 <div className="flex items-center justify-between">
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input {...register('rememberMe')} type="checkbox" className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500" />
+                    <input
+                      {...register('rememberMe')}
+                      type="checkbox"
+                      className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                    />
                     <span className="text-sm text-gray-600 dark:text-gray-400">Remember me</span>
                   </label>
                   <Link to="/forgot-password" className="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 hover:underline">
@@ -169,7 +176,10 @@ export function LoginPage() {
           </Card>
 
           <p className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400 max-w-md">
-            By signing in, you agree to our <Link to="#" className="underline hover:text-primary-600">Terms of Service</Link> and <Link to="#" className="underline hover:text-primary-600">Privacy Policy</Link>.
+            By signing in, you agree to our{' '}
+            <Link to="#" className="underline hover:text-primary-600">Terms of Service</Link>{' '}
+            and{' '}
+            <Link to="#" className="underline hover:text-primary-600">Privacy Policy</Link>.
           </p>
         </div>
       </motion.div>

@@ -59,12 +59,12 @@ const Toast = React.forwardRef<React.ElementRef<typeof ToastPrimitives.Root>, To
             <ToastPrimitives.Description className="text-sm opacity-90" />
           </div>
         </div>
-        <ToastPrimitives.Close className="absolute right-2 top-2 rounded-md p-1 text-gray-500 opacity-0 transition-opacity hover:text-gray-900 focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 dark:text-gray-400 dark:hover:text-gray-100">
+        <ToastPrimitives.Close className="absolute right-2 top-2 rounded-md p-1 text-gray-500 opacity-0 transition-opacity hover:text-gray-900 focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 dark:text-gray-400 dark:hover:text-white">
           <X className="h-4 w-4" />
         </ToastPrimitives.Close>
       </ToastPrimitives.Root>
-    );
-  }
+    )
+  );
 );
 Toast.displayName = ToastPrimitives.Root.displayName;
 

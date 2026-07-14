@@ -33,14 +33,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             className={cn(
-              'flex h-10 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400',
+              'flex h-10 w-full rounded-lg border bg-white px-3 py-2 text-sm transition-colors',
+              'placeholder:text-gray-400',
               'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
-              'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-100',
-              'dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500',
+              'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-50',
+              'dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500',
               'dark:focus:ring-primary-400',
-              error && 'border-red-500 focus:ring-red-500',
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
+              error && 'border-red-500 focus:ring-red-500',
+              !error && 'border-gray-300 dark:border-gray-600',
               className
             )}
             aria-invalid={error ? 'true' : 'false'}
@@ -93,12 +95,14 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={textareaId}
           className={cn(
-            'flex min-h-[100px] w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400',
+            'flex min-h-[100px] w-full rounded-lg border bg-white px-3 py-2 text-sm transition-colors resize-none',
+            'placeholder:text-gray-400',
             'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
-            'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-100',
-            'dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500',
+            'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-50',
+            'dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500',
             'dark:focus:ring-primary-400',
             error && 'border-red-500 focus:ring-red-500',
+            !error && 'border-gray-300 dark:border-gray-600',
             className
           )}
           aria-invalid={error ? 'true' : 'false'}
@@ -147,12 +151,13 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             ref={ref}
             id={selectId}
             className={cn(
-              'flex h-10 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm',
+              'flex h-10 w-full appearance-none rounded-lg border bg-white px-3 py-2 text-sm',
               'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
-              'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-100',
+              'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-50',
               'dark:border-gray-600 dark:bg-gray-800 dark:text-white',
               'dark:focus:ring-primary-400',
               error && 'border-red-500 focus:ring-red-500',
+              !error && 'border-gray-300 dark:border-gray-600',
               className
             )}
             aria-invalid={error ? 'true' : 'false'}

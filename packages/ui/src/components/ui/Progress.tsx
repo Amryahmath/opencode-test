@@ -1,30 +1,5 @@
 import * as React from 'react';
-import * as ProgressPrimitive from '@radix-ui/react-progress';
 import { cn } from '../../utils/classnames';
-
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & { className?: string }
->(({ className, value, max = 100, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn(
-      'relative h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700',
-      className
-    )}
-    value={value}
-    max={max}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className={cn(
-        'h-full w-full flex-1 bg-primary-600 transition-all duration-500 ease-out rounded-full',
-        'dark:bg-primary-500'
-      )}
-    />
-  </ProgressPrimitive.Root>
-));
-Progress.displayName = ProgressPrimitive.Root.displayName;
 
 interface ProgressCircleProps {
   value: number;
@@ -86,5 +61,29 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
     </div>
   );
 };
+
+export const Progress = React.forwardRef<
+  React.ElementRef<typeof ProgressPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & { className?: string }
+>(({ className, value, max = 100, ...props }, ref) => (
+  <ProgressPrimitive.Root
+    ref={ref}
+    className={cn(
+      'relative h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700',
+      className
+    )}
+    value={value}
+    max={max}
+    {...props}
+  >
+    <ProgressPrimitive.Indicator
+      className={cn(
+        'h-full w-full flex-1 bg-primary-600 transition-all duration-500 ease-out rounded-full',
+        'dark:bg-primary-500'
+      )}
+    />
+  </ProgressPrimitive.Root>
+));
+Progress.displayName = ProgressPrimitive.Root.displayName;
 
 export { Progress };
