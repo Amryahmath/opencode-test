@@ -158,9 +158,8 @@ export function ForgotPasswordPage() {
             and{' '}
             <Link to="#" className="underline hover:text-primary-600">Privacy Policy</Link>.
           </p>
-        </Card>
+        </div>
       </div>
     </div>
-  </div>
   );
 }

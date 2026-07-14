@@ -69,27 +69,27 @@ export function HomePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <Link to="/register">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-xl font-semibold text-lg hover:from-primary-700 hover:to-secondary-700 transition-all shadow-lg shadow-primary-500/25"
-                  >
-                    Start Learning Free
-                    <ArrowRight className="h-5 w-5" />
-                  </motion.button>
-                </Link>
-                <Link to="/ai-tutor">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-xl font-semibold text-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                  >
-                    <Bot className="h-5 w-5" />
-                    Try AI Tutor
-                  </motion.button>
-                </Link>
-              </div>
+<Link to="/register">
+                <motion.a
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-xl font-semibold text-lg hover:from-primary-700 hover:to-secondary-700 transition-all shadow-lg shadow-primary-500/25"
+                >
+                  Start Learning Free
+                  <ArrowRight className="h-5 w-5" />
+                </motion.a>
+              </Link>
+              <Link to="/ai-tutor">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-xl font-semibold text-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <Bot className="h-5 w-5" />
+                  Try AI Tutor
+                </motion.button>
+              </Link>
+            </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 text-sm text-gray-500 dark:text-gray-400">
                 <div className="flex items-center gap-2">
@@ -152,8 +152,7 @@ export function HomePage() {
               </div>
               <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl opacity-20 blur-xl" />
               <div className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-secondary-500 to-accent-500 rounded-2xl opacity-20 blur-xl" />
-            </motion.div>
-          </div>
+</motion.a>
         </div>
       </section>
 
