@@ -4,15 +4,15 @@ import { motion } from 'framer-motion';
 import { Button, Input, Select, Badge, Card } from '@it-master-ai/ui';
 
 const resources = [
-  { id: '1', title: 'Introduction to Python Programming', description: 'Complete guide to Python basics for beginners', type: 'pdf', grade: 7, topic: 'Programming Basics', thumbnail: '📄', url: '#', duration: 0, pages: 45, downloads: 1250, tags: ['Beginner', 'Python', 'Grade 7'] },
-  { id: '2', title: 'HTML & CSS Fundamentals', description: 'Learn to build responsive websites from scratch', type: 'video', grade: 8, topic: 'Web Development', thumbnail: '🎬', url: '#', duration: 120, pages: 0, downloads: 3400, tags: ['Beginner', 'Web Dev', 'Grade 8'] },
-  { id: '3', title: 'Database Design Principles', description: 'Understanding relational databases and SQL', type: 'pdf', grade: 10, topic: 'Databases', thumbnail: '📄', url: '#', duration: 0, pages: 60, downloads: 890, tags: ['Intermediate', 'SQL', 'Grade 10'] },
-  { id: '4', title: 'JavaScript ES6+ Features', description: 'Modern JavaScript syntax and best practices', type: 'video', grade: 9, topic: 'Web Development', thumbnail: '🎬', url: '#', duration: 90, pages: 0, downloads: 2100, tags: ['Intermediate', 'JavaScript', 'Grade 9'] },
-  { id: '5', title: 'Cybersecurity Basics', description: 'Introduction to network security and threat prevention', type: 'notes', grade: 11, topic: 'Security', thumbnail: '📝', url: '#', duration: 0, pages: 30, downloads: 1800, tags: ['Advanced', 'Security', 'Grade 11'] },
-  { id: '6', title: 'Data Structures & Algorithms', description: 'Essential CS concepts for problem solving', type: 'pdf', grade: 10, topic: 'Algorithms', thumbnail: '📄', url: '#', duration: 0, pages: 80, downloads: 2500, tags: ['Advanced', 'Algorithms', 'Grade 10'] },
-  { id: '7', title: 'Python Practice Exercises', description: 'Hands-on coding challenges with solutions', type: 'download', grade: 7, topic: 'Programming Basics', thumbnail: '💾', url: '#', duration: 0, pages: 0, downloads: 5600, tags: ['Beginner', 'Practice', 'Grade 7'] },
-  { id: '8', title: 'Network Fundamentals', description: 'Understanding how the internet works', type: 'video', grade: 9, topic: 'Networking', thumbnail: '🎬', url: '#', duration: 75, pages: 0, downloads: 1500, tags: ['Intermediate', 'Networking', 'Grade 9'] },
-  { id: '9', title: 'Machine Learning Introduction', description: 'Basic concepts of AI and machine learning', type: 'notes', grade: 11, topic: 'AI/ML', thumbnail: '📝', url: '#', duration: 0, pages: 25, downloads: 950, tags: ['Advanced', 'AI', 'Grade 11'] },
+  { id: '1', title: 'Introduction to Python Programming', description: 'Complete guide to Python basics for beginners including variables, loops, functions, and data structures.', type: 'pdf', grade: 7, topic: 'Programming Basics', thumbnail: '📄', url: '#', duration: 0, pages: 45, downloads: 1250, tags: ['Beginner', 'Python', 'Grade 7'] },
+  { id: '2', title: 'HTML & CSS Fundamentals', description: 'Learn to build responsive websites from scratch with this comprehensive video tutorial series.', type: 'video', grade: 8, topic: 'Web Development', thumbnail: '🎬', url: '#', duration: 7200, pages: 0, downloads: 3400, tags: ['Beginner', 'Web Dev', 'Grade 8'] },
+  { id: '3', title: 'Database Design Principles', description: 'Understanding relational databases, normalization, ER diagrams, and SQL best practices.', type: 'pdf', grade: 10, topic: 'Databases', thumbnail: '📄', url: '#', duration: 0, pages: 60, downloads: 890, tags: ['Intermediate', 'SQL', 'Grade 10'] },
+  { id: '4', title: 'JavaScript ES6+ Features', description: 'Modern JavaScript syntax including arrow functions, destructuring, modules, and async/await.', type: 'video', grade: 9, topic: 'Web Development', thumbnail: '🎬', url: '#', duration: 5400, pages: 0, downloads: 2100, tags: ['Intermediate', 'JavaScript', 'Grade 9'] },
+  { id: '5', title: 'Cybersecurity Basics', description: 'Introduction to network security, threat modeling, encryption, and ethical hacking principles.', type: 'notes', grade: 11, topic: 'Security', thumbnail: '📝', url: '#', duration: 0, pages: 30, downloads: 1800, tags: ['Advanced', 'Security', 'Grade 11'] },
+  { id: '6', title: 'Data Structures & Algorithms', description: 'Comprehensive reference for arrays, linked lists, trees, graphs, sorting, and searching algorithms.', type: 'pdf', grade: 10, topic: 'Algorithms', thumbnail: '📄', url: '#', duration: 0, pages: 80, downloads: 2500, tags: ['Advanced', 'Algorithms', 'Grade 10'] },
+  { id: '7', title: 'Python Practice Exercises', description: '50+ hands-on coding challenges with detailed solutions and explanations.', type: 'download', grade: 7, topic: 'Programming Basics', thumbnail: '💾', url: '#', duration: 0, pages: 0, downloads: 5600, tags: ['Beginner', 'Practice', 'Grade 7'] },
+  { id: '8', title: 'Network Fundamentals', description: 'How the internet works: IP addresses, DNS, HTTP/HTTPS, TCP/IP, and network layers.', type: 'video', grade: 9, topic: 'Networking', thumbnail: '🎬', url: '#', duration: 4500, pages: 0, downloads: 1500, tags: ['Intermediate', 'Networking', 'Grade 9'] },
+  { id: '9', title: 'Machine Learning Introduction', description: 'Basic concepts of AI/ML, supervised vs unsupervised learning, and building your first model.', type: 'notes', grade: 11, topic: 'AI/ML', thumbnail: '📝', url: '#', duration: 0, pages: 25, downloads: 950, tags: ['Advanced', 'AI', 'Grade 11'] },
 ];
 
 const typeIcons = { pdf: FileText, video: Play, notes: BookOpen, download: Download };
@@ -132,12 +132,12 @@ export function ResourcesPage() {
                         </Badge>
                       </div>
                       <div className="absolute bottom-3 left-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity justify-center">
-                        <Button size="sm" variant="secondary" className="flex-1"><Eye className="h-4 w-4 mr-1" /> View</Button>
+                        <Button size="sm" variant="secondary"><Eye className="h-4 w-4 mr-1" /> View</Button>
                         <Button size="sm" variant="outline"><Download className="h-4 w-4" /></Button>
                       </div>
                     </div>
                     <Card.Content className="p-4 space-y-3">
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap gap-2">
                         <Badge variant="secondary">Grade {resource.grade}</Badge>
                         <Badge variant="outline">{resource.topic}</Badge>
                       </div>
@@ -150,11 +150,8 @@ export function ResourcesPage() {
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 pt-2 border-t border-gray-100 dark:border-gray-700">
                         <span className="flex items-center gap-1"><Award className="h-3 w-3" /> {resource.downloads.toLocaleString()}</span>
-                        {resource.duration > 0 ? (
-                          <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {resource.duration} min</span>
-                        ) : resource.pages > 0 ? (
-                          <span className="flex items-center gap-1"><FileText className="h-3 w-3" /> {resource.pages} pages</span>
-                        ) : null}
+                        {resource.duration > 0 && <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {Math.round(resource.duration / 60)} min</span>}
+                        {resource.pages > 0 && <span className="flex items-center gap-1"><FileText className="h-3 w-3" /> {resource.pages} pages</span>}
                       </div>
                     </Card.Content>
                   </Card>
@@ -181,11 +178,11 @@ export function ResourcesPage() {
                           <h3 className="text-lg lg:text-xl font-semibold text-gray-900 dark:text-white mb-1">{resource.title}</h3>
                           <p className="text-gray-500 dark:text-gray-400 mb-3 line-clamp-1">{resource.description}</p>
                           <div className="flex flex-wrap gap-2 mb-3">
-                            {resource.tags.map(tag => <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>)}
+                            {resource.tags.slice(0, 3).map(tag => <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>)}
                           </div>
                           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                             <span className="flex items-center gap-1"><Award className="h-3 w-3" /> {resource.downloads.toLocaleString()} downloads</span>
-                            {resource.duration > 0 && <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {resource.duration} min</span>}
+                            {resource.duration > 0 && <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {Math.round(resource.duration / 60)} min</span>}
                             {resource.pages > 0 && <span className="flex items-center gap-1"><FileText className="h-3 w-3" /> {resource.pages} pages</span>}
                           </div>
                         </div>
@@ -194,7 +191,7 @@ export function ResourcesPage() {
                           <Button size="sm" variant="outline"><Download className="h-4 w-4" /></Button>
                         </div>
                       </div>
-                    </div>
+                    </Card.Content>
                   </Card>
                 </motion.div>
               ))}

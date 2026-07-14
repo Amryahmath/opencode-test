@@ -94,6 +94,38 @@ export function OtpPage() {
     );
   }
 
+  const onSubmit = async (data: OtpForm) => {
+    setIsLoading(true);
+    setError('');
+    try {
+      await new Promise(r => setTimeout(r, 1500));
+      if (data.otp === '123456') {
+        setSuccess(true);
+      } else {
+        setError('Invalid OTP. Use 123456 for demo.');
+      }
+    } catch {
+      setError('Verification failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleResend = async () => {
+    if (resendTimer > 0) return;
+    setResendTimer(60);
+    const timer = setInterval(() => {
+      setResendTimer(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    await new Promise(r => setTimeout(r, 500));
+  };
+
   return (
     <div className="min-h-screen">
       <motion.div
@@ -126,10 +158,6 @@ export function OtpPage() {
             </Card.Header>
 
             <Card.Content className="space-y-5">
-              <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-                Didn't receive the code? Check your spam folder or wait
-              </div>
-
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <Input
                   {...register('otp')}
@@ -179,7 +207,7 @@ export function OtpPage() {
                 </button>
               </div>
 
-              <div className="relative">
+              <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t border-gray-200 dark:border-gray-700" />
                 </div>

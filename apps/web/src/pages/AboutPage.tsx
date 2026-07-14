@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Bot, Target, Users, Award, Clock, BookOpen, TrendingUp, ArrowRight, CheckCircle } from 'lucide-react';
+import { Bot, Target, Users, Award, Clock, BookOpen, TrendingUp, ArrowRight, CheckCircle, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Button } from '@it-master-ai/ui';
 
 const missionVision = [
   {
@@ -130,7 +131,6 @@ export function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -169,7 +169,6 @@ export function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -213,7 +212,6 @@ export function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">

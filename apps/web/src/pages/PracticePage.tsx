@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Target, Filter, X, ChevronDown, Clock, Star, Trophy, Brain, Code, Database, Globe, Lock, Shield, Layers } from 'lucide-react';
+import { BookOpen, Target, Filter, X, ChevronDown, Clock, Star, Trophy, Brain, Code, Database, Globe, Lock, Shield, Layers, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button, Badge, Select, Input, Card } from '@it-master-ai/ui';
 
@@ -43,24 +43,28 @@ export function PracticePage() {
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-500/10 rounded-full blur-3xl" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4"
           >
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Practice{' '}
-              <span className="gradient-text">IT Skills</span>
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Master concepts with adaptive practice questions. Get instant feedback and track your progress.
-            </p>
-          </motion.div>
+            Practice{' '}
+            <span className="gradient-text">IT Skills</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+          >
+            Master concepts with adaptive practice questions. Get instant feedback and track your progress.
+          </motion.p>
         </div>
       </section>
 
       {/* Filters */}
-      <section className="py-8 bg-white dark:bg-dark-bg border-y border-gray-200 dark:border-gray-700">
+      <section className="py-8 bg-white dark:bg-dark-bg border-y border-gray-200 dark:border-gray-700 sticky top-16 z-40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
             <div className="flex flex-wrap gap-2 w-full md:w-auto">
@@ -68,7 +72,7 @@ export function PracticePage() {
                 placeholder="Search topics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 min-w-[200px]"
+                className="w-full md:w-64"
                 leftIcon={<Filter className="h-4 w-4" />}
               />
               <Select value={selectedGrade} onValueChange={setSelectedGrade} className="w-full md:w-36">
@@ -93,6 +97,22 @@ export function PracticePage() {
               </Button>
             )}
           </div>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            {grades.map(grade => (
+              <button
+                key={grade}
+                onClick={() => setSelectedGrade(selectedGrade === String(grade) ? 'all' : String(grade))}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  selectedGrade === String(grade)
+                    ? 'bg-primary-600 text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                }`}
+              >
+                Grade {grade}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -112,8 +132,8 @@ export function PracticePage() {
                 <Card className="h-full hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300">
                   <Card.Header className="pb-3">
                     <div className="flex items-start justify-between gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center`} style={{ background: topic.color.replace('-500', '-500/10').replace('-600', '-600/10') }}>
-                        <topic.icon className="h-6 w-6" style={{ color: topic.color.split(' ')[0].replace('from-', '') }} />
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center`} style={{ background: topic.color.replace('from-', '').replace('to-', '') }}>
+                        <topic.icon className="h-6 w-6" style={{ color: topic.color.split(' ')[0].replace('from-', '').replace('to-', '') }} />
                       </div>
                       <Badge variant="outline" className="text-xs self-center">{topic.difficulty}</Badge>
                     </div>
@@ -149,10 +169,10 @@ export function PracticePage() {
           </div>
 
           {filteredTopics.length === 0 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-16 col-span-full">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-16">
               <Filter className="h-12 w-12 mx-auto text-gray-400 mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No topics found</h3>
-              <p className="text-gray-600 dark:text-gray-400">Try adjusting your filters or search terms.</p>
+              <p className="text-gray-500 dark:text-gray-400">Try adjusting your filters or search terms.</p>
             </motion.div>
           )}
         </div>

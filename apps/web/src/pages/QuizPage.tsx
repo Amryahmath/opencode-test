@@ -15,11 +15,21 @@ const mockQuizzes = [
 
 const mockQuestions = {
   'js-basics': [
-    { id: 1, text: 'What is the correct way to declare a variable in JavaScript?', type: 'mcq', options: ['var x = 5;', 'variable x = 5;', 'x := 5;', 'declare x = 5;'], correct: [0], explanation: 'JavaScript uses var, let, or const to declare variables.' },
-    { id: 2, text: 'Which method adds an element to the end of an array?', type: 'mcq', options: ['push()', 'pop()', 'shift()', 'unshift()'], correct: [0], explanation: 'push() adds elements to the end of an array.' },
-    { id: 3, text: 'What does "===" mean in JavaScript?', type: 'mcq', options: ['Assignment', 'Loose equality', 'Strict equality', 'Not equal'], correct: [2], explanation: '=== checks both value and type equality.' },
-    { id: 4, text: 'How do you write a comment in JavaScript?', type: 'mcq', options: ['<!-- comment -->', '// comment', '# comment', '/* comment */'], correct: [1, 3], explanation: 'Both // for single-line and /* */ for multi-line comments are valid.' },
-    { id: 5, text: 'What is the result of 2 + "2" in JavaScript?', type: 'mcq', options: ['4', '"22"', 'NaN', 'Error'], correct: [1], explanation: 'JavaScript coerces the number to string, resulting in string concatenation.' },
+    { id: 1, text: 'What is the correct way to declare a variable in JavaScript?', type: 'mcq', options: ['var x = 5;', 'variable x = 5;', 'x := 5;', 'declare x = 5;'], correct: [0], explanation: 'JavaScript uses var, let, or const to declare variables.', points: 10 },
+    { id: 2, text: 'Which method adds an element to the end of an array?', type: 'mcq', options: ['push()', 'pop()', 'shift()', 'unshift()'], correct: [0], explanation: 'push() adds elements to the end of an array.', points: 10 },
+    { id: 3, text: 'What does "===" mean in JavaScript?', type: 'mcq', options: ['Assignment', 'Loose equality', 'Strict equality', 'Not equal'], correct: [2], explanation: '=== checks both value and type equality.', points: 10 },
+    { id: 4, text: 'How do you write a comment in JavaScript?', type: 'mcq', options: ['<!-- comment -->', '// comment', '# comment', '/* comment */'], correct: [1, 3], explanation: 'Both // for single-line and /* */ for multi-line comments are valid.', points: 10 },
+    { id: 5, text: 'What is the result of 2 + "2" in JavaScript?', type: 'mcq', options: ['4', '"22"', 'NaN', 'Error'], correct: [1], explanation: 'JavaScript coerces the number to string, resulting in string concatenation.', points: 10 },
+    { id: 6, text: 'Which keyword declares a constant?', type: 'mcq', options: ['var', 'let', 'const', 'constant'], correct: [2], explanation: 'const declares a constant that cannot be reassigned.', points: 10 },
+    { id: 7, text: 'What does the "typeof" operator return for null?', type: 'mcq', options: ['"null"', '"object"', '"undefined"', '"number"'], correct: [1], explanation: 'typeof null returns "object" - this is a known JavaScript quirk.', points: 10 },
+    { id: 8, text: 'Which array method creates a new array with transformed elements?', type: 'mcq', options: ['forEach()', 'map()', 'filter()', 'reduce()'], correct: [1], explanation: 'map() transforms each element and returns a new array.', points: 10 },
+    { id: 9, text: 'What is the purpose of "use strict"?', type: 'mcq', options: ['Enables strict mode', 'Makes code faster', 'Enables ES6 features', 'Disables error handling'], correct: [0], explanation: '"use strict" enables strict mode which catches common coding mistakes.', points: 10 },
+    { id: 10, text: 'Which of these is NOT a JavaScript data type?', type: 'mcq', options: ['string', 'boolean', 'float', 'undefined'], correct: [2], explanation: 'JavaScript has number type (not separate float/int).', points: 10 },
+    { id: 11, text: 'What does the "this" keyword refer to in a regular function?', type: 'mcq', options: ['The function itself', 'The global object', 'The parent object', 'undefined'], correct: [1], explanation: 'In regular functions, "this" refers to the global object (window in browsers).', points: 10 },
+    { id: 12, text: 'Which method removes the last element from an array?', type: 'mcq', options: ['pop()', 'push()', 'shift()', 'slice()'], correct: [0], explanation: 'pop() removes and returns the last element.', points: 10 },
+    { id: 13, text: 'What is a closure in JavaScript?', type: 'mcq', options: ['A way to close the browser', 'Function with access to outer scope', 'Ending a loop early', 'Closing a file'], correct: [1], explanation: 'A closure gives access to an outer function\'s scope from an inner function.', points: 15 },
+    { id: 14, text: 'What does Promise.all() do?', type: 'mcq', options: ['Runs promises sequentially', 'Waits for all promises to resolve', 'Cancels all promises', 'Returns first resolved promise'], correct: [1], explanation: 'Promise.all() waits for all promises to resolve or one to reject.', points: 15 },
+    { id: 15, text: 'What is the event loop?', type: 'mcq', options: ['A loop for events', 'Mechanism for async callbacks', 'Infinite loop', 'Timer function'], correct: [1], explanation: 'The event loop handles async callbacks in JavaScript\'s single-threaded model.', points: 15 },
   ]
 };
 
@@ -82,21 +92,33 @@ export function QuizPage() {
     let correct = 0;
     const questionResults = quizQuestions.map(q => {
       const userAnswers = answers[q.id] || [];
-      const isCorrect = JSON.stringify(userAnswers.sort()) === JSON.stringify(q.correct.sort());
+      const isCorrect = JSON.stringify(userAnswers.sort()) === JSON.stringify(q.correctAnswers.sort());
       if (isCorrect) correct++;
-      return { questionId: q.id, isCorrect, userAnswers, correctAnswers: q.correct, explanation: q.explanation };
+      return {
+        questionId: q.id,
+        isCorrect,
+        selectedAnswers: userAnswers,
+        correctAnswers: q.correctAnswers,
+        explanation: q.explanation,
+      };
     });
     
-    const percentage = Math.round((correct / quizQuestions.length) * 100);
-    const passed = percentage >= (quiz?.passingScore || 70);
-    
+    const totalPoints = quizQuestions.reduce((sum, q) => sum + q.points, 0);
+    const earnedPoints = questionResults.filter(r => r.isCorrect).reduce((sum, r) => {
+      const q = quizQuestions.find(qq => qq.id === r.questionId);
+      return sum + (q?.points || 0);
+    }, 0);
+    const percentage = Math.round((earnedPoints / totalPoints) * 100);
+
     setResults({
-      score: correct,
-      total: quizQuestions.length,
+      score: earnedPoints,
+      totalPoints,
       percentage,
-      passed,
+      passed: percentage >= (quiz?.passingScore || 70),
+      correctAnswers: correct,
+      totalQuestions: quizQuestions.length,
+      questionResults,
       timeTaken: (quiz?.duration || 0) * 60 - timeLeft,
-      questionResults
     });
     setView('results');
     setIsSubmitting(false);
@@ -188,119 +210,119 @@ export function QuizPage() {
             <ProgressBar value={progress} className="h-2" />
           </div>
         </div>
+      </div>
 
-        <main className="pt-20 pb-16 px-4">
-          <div className="mx-auto max-w-3xl">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={question.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-6"
-              >
-                <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  Question {currentQuestion + 1} of {questions.length} • {question.points} points
-                </div>
-                
-                <Card>
-                  <Card.Content className="pt-6">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{question.text}</h3>
-                    
-                    <div className="space-y-3">
-                      {question.options.map((option, index) => (
-                        <motion.button
-                          key={index}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                          onClick={() => handleAnswer(question.id, index)}
-                          className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
-                            userAnswer?.includes(index)
-                              ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300'
-                              : 'border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 hover:bg-gray-50 dark:hover:bg-gray-800'
-                          }`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                              userAnswer?.includes(index)
-                                ? 'border-primary-500 bg-primary-500 text-white'
-                                : 'border-gray-300 dark:border-gray-600'
-                            }`}>
-                              {userAnswer?.includes(index) && <CheckCircle className="h-4 w-4" />}
-                            </div>
-                            <span className="text-gray-900 dark:text-white">{option}</span>
-                          </div>
-                        </motion.button>
-                      ))}
-                    </div>
-                  </Card.Content>
-                </Card>
-
-                <div className="flex items-center justify-between">
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    disabled={currentQuestion === 0}
-                    onClick={() => setCurrentQuestion(prev => prev - 1)}
-                  >
-                    <ChevronLeft className="h-4 w-4 mr-2" />
-                    Previous
-                  </Button>
+      <main className="pt-20 pb-16 px-4">
+        <div className="mx-auto max-w-3xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={question.id}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6"
+            >
+              <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                Question {currentQuestion + 1} of {questions.length} • {question.points} points
+              </div>
+              
+              <Card>
+                <Card.Content className="pt-6">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{question.text}</h3>
                   
-                  <div className="flex items-center gap-2">
-                    {questions.map((_, i) => (
+                  <div className="space-y-3">
+                    {question.options.map((option, index) => (
                       <motion.button
-                        key={i}
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
-                          i === currentQuestion
-                            ? 'bg-primary-600 text-white'
-                            : answers[questions[i].id]
-                            ? 'bg-green-500 text-white'
-                            : 'bg-gray-200 text-gray-600 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                        key={index}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        onClick={() => handleAnswer(question.id, index)}
+                        className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
+                          userAnswer?.includes(index)
+                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300'
+                            : 'border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 hover:bg-gray-50 dark:hover:bg-gray-800'
                         }`}
-                        onClick={() => setCurrentQuestion(i)}
                       >
-                        {i + 1}
+                        <div className="flex items-center gap-3">
+                          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                            userAnswer?.includes(index)
+                              ? 'border-primary-500 bg-primary-500 text-white'
+                              : 'border-gray-300 dark:border-gray-600'
+                          }`}>
+                            {userAnswer?.includes(index) && <CheckCircle className="h-4 w-4" />}
+                          </div>
+                          <span className="text-gray-900 dark:text-white">{option}</span>
+                        </div>
                       </motion.button>
                     ))}
                   </div>
+                </Card.Content>
+              </Card>
 
-                  {currentQuestion === questions.length - 1 ? (
-                    <Button 
-                      variant="gradient" 
-                      size="lg"
-                      onClick={handleSubmit}
-                      disabled={isSubmitting}
+              <div className="flex items-center justify-between">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  disabled={currentQuestion === 0}
+                  onClick={() => setCurrentQuestion(prev => prev - 1)}
+                >
+                  <ChevronLeft className="h-4 w-4 mr-2" />
+                  Previous
+                </Button>
+                
+                <div className="flex items-center gap-2">
+                  {questions.map((_, i) => (
+                    <motion.button
+                      key={i}
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: 1 }}
+                      className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
+                        i === currentQuestion
+                          ? 'bg-primary-600 text-white'
+                          : answers[questions[i].id]
+                          ? 'bg-green-500 text-white'
+                          : 'bg-gray-200 text-gray-600 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                      }`}
+                      onClick={() => setCurrentQuestion(i)}
                     >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          Submit Quiz
-                          <CheckCircle className="h-4 w-4 ml-2" />
-                        </>
-                      )}
-                    </Button>
-                  ) : (
-                    <Button 
-                      variant="primary" 
-                      size="lg"
-                      onClick={() => setCurrentQuestion(prev => prev + 1)}
-                    >
-                      Next
-                      <ChevronRight className="h-4 w-4 ml-2" />
-                    </Button>
-                  )}
+                      {i + 1}
+                    </motion.button>
+                  ))}
                 </div>
-              </motion.div>
-            </AnimatePresence>
+
+                {currentQuestion === questions.length - 1 ? (
+                  <Button 
+                    variant="gradient" 
+                    size="lg"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        Submit Quiz
+                        <CheckCircle className="h-4 w-4 ml-2" />
+                      </>
+                    )}
+                  </Button>
+                ) : (
+                  <Button 
+                    variant="primary" 
+                    size="lg"
+                    onClick={() => setCurrentQuestion(prev => prev + 1)}
+                  >
+                    Next
+                    <ChevronRight className="h-4 w-4 ml-2" />
+                  </Button>
+                )}
+              </div>
+            </div>
           </div>
         </main>
       </div>
@@ -373,11 +395,11 @@ export function QuizPage() {
                         {question.options.map((opt, i) => (
                           <div key={i} className={`p-3 rounded-lg text-sm ${
                             qr.correctAnswers.includes(i) ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800' :
-                            qr.userAnswers.includes(i) ? 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800' :
+                            qr.selectedAnswers.includes(i) ? 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800' :
                             'bg-gray-50 dark:bg-gray-800'
                           } flex items-center gap-3`}>
                             {qr.correctAnswers.includes(i) && <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400 flex-shrink-0" />}
-                            {qr.userAnswers.includes(i) && !qr.correctAnswers.includes(i) && <XCircle className="h-4 w-4 text-red-600 dark:text-red-400 flex-shrink-0" />}
+                            {qr.selectedAnswers.includes(i) && !qr.correctAnswers.includes(i) && <XCircle className="h-4 w-4 text-red-600 dark:text-red-400 flex-shrink-0" />}
                             <span className="flex-1">{opt}</span>
                           </div>
                         ))}

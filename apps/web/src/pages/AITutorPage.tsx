@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Send, Mic, Paperclip, Bot, X, Sparkles, Trash2, Plus, Loader2, Copy, ThumbsUp, ThumbsDown, Flag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button, Input, Card, ScrollArea } from '@it-master-ai/ui';
+import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, ScrollArea } from '@it-master-ai/ui';
 
 const suggestedQuestions = [
   'What is a variable in programming?',
@@ -27,7 +27,7 @@ function getMockResponse(message: string): string {
   for (const [key, response] of Object.entries(mockResponses)) {
     if (lower.includes(key)) return response;
   }
-  return `That's a great question about "${message}"! As your AI tutor, I can help explain IT concepts, debug code, suggest projects, and guide you through the curriculum. 
+  return `That's a great question about "${message}"! As your AI tutor, I can help explain IT concepts, debug code, suggest projects, and guide you through the curriculum.
 
 For example, I can:
 • Explain programming concepts (variables, loops, functions, etc.)
@@ -124,19 +124,19 @@ function TypingIndicator() {
 }
 
 export function AITutorPage() {
-  const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant'; content: string; isStreaming?: boolean }>>([
+  const [messages, setMessages] = React.useState<Array<{ role: 'user' | 'assistant'; content: string; isStreaming?: boolean }>>([
     { role: 'assistant', content: "Hi! I'm your AI Tutor for IT Master AI. I can help you with programming concepts, debugging, practice problems, and explaining any topic from the Grade 6-11 curriculum. What would you like to learn today?" }
   ]);
-  const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [chats, setChats] = useState<Array<{ id: string; title: string; messages: typeof messages }>>([
+  const [input, setInput] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [sidebarOpen, setSidebarOpen] = React.useState(true);
+  const [chats, setChats] = React.useState<Array<{ id: string; title: string; messages: typeof messages }>>([
     { id: '1', title: 'Welcome Chat', messages: [] }
   ]);
-  const [activeChatId, setActiveChatId] = useState('1');
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [activeChatId, setActiveChatId] = React.useState('1');
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
@@ -170,6 +170,30 @@ export function AITutorPage() {
     setIsLoading(false);
   };
 
+  const getMockResponse = (message: string): string => {
+    const lower = message.toLowerCase();
+    for (const [key, response] of Object.entries({
+      'variable': 'A variable is like a labeled box where you can store a value. In programming, you give it a name (like `age` or `score`) and assign it a value. You can then use that name throughout your code to refer to the stored value. For example: `let age = 15;` stores the number 15 in a variable called `age`.',
+      'loop': 'A loop lets you repeat code multiple times without writing it over and over. In Python, a `for` loop might look like: `for i in range(5): print(i)` - this prints numbers 0 through 4. A `while` loop continues as long as a condition is true. Loops are essential for automating repetitive tasks!',
+      'http': 'HTTP (HyperText Transfer Protocol) is the foundation of data communication on the web. HTTPS is the secure version - the "S" stands for Secure. It uses SSL/TLS encryption to protect data between your browser and the server. Always look for the padlock icon and "https://" when entering sensitive information!',
+      'database': 'A database is an organized collection of data that can be easily accessed, managed, and updated. Think of it like a digital filing cabinet. Common types include SQL databases (like MySQL, PostgreSQL) for structured data and NoSQL databases (like MongoDB) for flexible data. They power everything from your school records to social media!',
+      'encryption': 'Encryption scrambles your data so only authorized parties can read it. It uses mathematical algorithms and keys. Symmetric encryption uses the same key to encrypt and decrypt. Asymmetric encryption uses a public key (to encrypt) and private key (to decrypt). This is how HTTPS, messaging apps, and password storage stay secure!',
+      'html': 'HTML (HyperText Markup Language) structures web content with elements like headings (`<h1>`), paragraphs (`<p>`), links (`<a>`), and images (`<img>`). CSS (Cascading Style Sheets) styles those elements - colors, fonts, layouts, animations. Together they create every website you visit! Try right-clicking any page and selecting "Inspect" to see the code.',
+    })) {
+      if (lower.includes(key)) return response;
+    }
+    return `That's a great question about "${message}"! As your AI tutor, I can help explain IT concepts, debug code, suggest projects, and guide you through the curriculum.
+
+For example, I can:
+• Explain programming concepts (variables, loops, functions, etc.)
+• Help debug your code step by step
+• Suggest practice projects for your grade level
+• Explain networking, databases, cybersecurity topics
+• Create custom quizzes to test your knowledge
+
+What would you like to learn about today?`;
+  };
+
   const handleSuggestedClick = (question: string) => {
     setInput(question);
     handleSend(new Event('submit') as React.FormEvent);
@@ -200,7 +224,7 @@ export function AITutorPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-bg flex">
       {/* Sidebar */}
-      <aside className={`${sidebarOpen ? 'w-80' : 'w-0'} lg:w-80 transition-all duration-300 bg-white dark:bg-dark-card border-r border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden`}>
+      <aside className={`${sidebarOpen ? 'w-80' : 'w-0'} lg:w-80 transition-all duration-300 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden`}>
         <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
           <h2 className="font-semibold text-gray-900 dark:text-white">Recent Chats</h2>
           <Button variant="ghost" size="sm" onClick={handleNewChat} className="h-8 w-8 p-0" aria-label="New chat">
@@ -242,11 +266,11 @@ export function AITutorPage() {
 
       {/* Main Chat Area */}
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="p-4 bg-white dark:bg-dark-card border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <header className="p-4 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="lg:hidden p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
               aria-label="Toggle chat history"
             >
               <Bot className="h-5 w-5" />
@@ -300,7 +324,7 @@ export function AITutorPage() {
         </div>
 
         {/* Input Area */}
-        <div className="p-4 bg-white dark:bg-dark-card border-t border-gray-200 dark:border-gray-700">
+        <div className="p-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
           <form onSubmit={handleSend} className="flex items-end gap-2">
             <div className="relative flex-1">
               <Input
