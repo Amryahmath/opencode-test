@@ -4,6 +4,6 @@ export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 export { Badge, badgeVariants } from './Badge';
 export { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 export { Modal, ModalTrigger, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalFooter, ModalClose } from './Modal';
-export { Toast, ToastProvider, useToast } from './Toast';
+export { Toast, ToastProvider, ToastViewport, ToastTitle, ToastDescription, ToastClose, ToastAction } from './Toast';
 export { Loader, Spinner, LoadingDots, Skeleton } from './Loader';
 export { Progress, ProgressCircle } from './Progress';

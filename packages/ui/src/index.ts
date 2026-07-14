@@ -1,5 +1,4 @@
 export * from './components/ui';
-export * from './components/layout';
 export * from './components/forms';
 export * from './components/data';
 export * from './components/feedback';

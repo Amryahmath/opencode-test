@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Clock, CheckCircle, XCircle, ChevronLeft, ChevronRight, Trophy, Star, AlertCircle, Loader2, ArrowRight, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button, ProgressBar, Card, Badge } from '@it-master-ai/ui';
+import React from 'react';
 
 const mockQuizzes = [
   { id: 'js-basics', title: 'JavaScript Fundamentals', grade: 9, topic: 'Web Development', questions: 15, duration: 20, passingScore: 70, difficulty: 'Intermediate' },
@@ -92,13 +93,13 @@ export function QuizPage() {
     let correct = 0;
     const questionResults = quizQuestions.map(q => {
       const userAnswers = answers[q.id] || [];
-      const isCorrect = JSON.stringify(userAnswers.sort()) === JSON.stringify(q.correctAnswers.sort());
+      const isCorrect = JSON.stringify(userAnswers.sort()) === JSON.stringify(q.correct.sort());
       if (isCorrect) correct++;
       return {
         questionId: q.id,
         isCorrect,
         selectedAnswers: userAnswers,
-        correctAnswers: q.correctAnswers,
+        correctAnswers: q.correct,
         explanation: q.explanation,
       };
     });
@@ -192,7 +193,7 @@ export function QuizPage() {
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Link to="/quiz" onClick={() => setView('list')} className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
-                  <ChevronLeft className="h-5 w-5" />
+                  <ChevronLeftIcon className="h-5 w-5" />
                 </Link>
                 <span className="font-semibold text-gray-900 dark:text-white">{quiz.title}</span>
                 <Badge variant="outline" className="ml-2">{currentQuestion + 1}/{questions.length}</Badge>
@@ -268,7 +269,7 @@ export function QuizPage() {
                   disabled={currentQuestion === 0}
                   onClick={() => setCurrentQuestion(prev => prev - 1)}
                 >
-                  <ChevronLeft className="h-4 w-4 mr-2" />
+                  <ChevronLeftIcon className="h-4 w-4 mr-2" />
                   Previous
                 </Button>
                 
@@ -318,13 +319,13 @@ export function QuizPage() {
                     onClick={() => setCurrentQuestion(prev => prev + 1)}
                   >
                     Next
-                    <ChevronRight className="h-4 w-4 ml-2" />
+                    <ChevronRightIcon className="h-4 w-4 ml-2" />
                   </Button>
                 )}
               </div>
             </div>
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
     );
   }

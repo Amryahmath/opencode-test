@@ -32,7 +32,7 @@ export function MessageInput({ onSend, disabled = false, placeholder = 'Ask me a
   };
 
   const handleCompositionStart = () => setIsComposing(true);
-  const handleCompositionEnd = (e: React.CompositionEvent) => {
+  const handleCompositionEnd = (e: React.CompositionEvent<HTMLTextAreaElement>) => {
     setIsComposing(false);
     const value = e.currentTarget.value;
     if (value) {

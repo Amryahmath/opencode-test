@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Award, Bot, TrendingUp, Calendar, Clock, CheckCircle, Star, ArrowRight, Target, Flame, Trophy, Medal, Zap, Brain } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { BookOpen, Award, Bot, TrendingUp, Calendar, Clock, CheckCircle, Star, ArrowRight, Target, Flame, Trophy, Medal, Zap, Brain, ChevronRight, ChevronLeft, LayoutDashboard, Flame as FlameIcon, RefreshCw } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card, ProgressCircle, Badge, ProgressBar, Avatar } from '@it-master-ai/ui';
 import { useAuth } from '../../context/AuthContext';
+import React, { useState } from 'react';
 
 const mockStats = {
   completedLessons: 47,
@@ -26,8 +26,8 @@ const mockActivity = [
 const mockAchievements = [
   { id: '1', title: 'First Steps', description: 'Complete your first lesson', icon: Target, progress: 1, maxProgress: 1, unlockedAt: '2024-01-15', color: 'from-green-500 to-emerald-500' },
   { id: '2', title: 'Quiz Master', description: 'Score 90%+ on 5 quizzes', icon: Trophy, progress: 3, maxProgress: 5, color: 'from-yellow-500 to-orange-500' },
-  { id: '3', title: 'Streak Keeper', description: 'Maintain a 7-day study streak', icon: Flame, progress: 12, maxProgress: 7, unlockedAt: '2024-01-20', color: 'from-orange-500 to-red-500' },
-  { id: '4', title: 'AI Explorer', description: 'Ask 50 questions to AI Tutor', icon: Bot, progress: 234, maxProgress: 50, unlockedAt: '2024-01-25', color: 'from-purple-500 to-pink-500' },
+  { id: '3', title: 'Streak Keeper', description: 'Maintain a 7-day study streak', icon: Flame, unlockedAt: '2024-01-22', progress: 12, maxProgress: 7, color: 'from-orange-500 to-red-500' },
+  { id: '4', title: 'AI Explorer', description: 'Ask 50 questions to AI Tutor', icon: Bot, unlockedAt: '2024-02-05', progress: 234, maxProgress: 50, color: 'from-purple-500 to-pink-500' },
   { id: '5', title: 'Grade 9 Graduate', description: 'Complete all Grade 9 modules', icon: Medal, progress: 47, maxProgress: 55, color: 'from-blue-500 to-cyan-500' },
   { id: '6', title: 'Perfect Score', description: 'Get 100% on any quiz', icon: Star, progress: 0, maxProgress: 1, color: 'from-yellow-500 to-amber-500' },
 ];
@@ -41,13 +41,13 @@ const mockCalendarEvents = [
 ];
 
 const progressData = [
-  { date: '2024-01-15', lessonsCompleted: 2, quizzesTaken: 1, aiQuestions: 5, studyTime: 45 },
-  { date: '2024-01-16', lessonsCompleted: 3, quizzesTaken: 0, aiQuestions: 8, studyTime: 60 },
-  { date: '2024-01-17', lessonsCompleted: 1, quizzesTaken: 2, aiQuestions: 3, studyTime: 40 },
-  { date: '2024-01-18', lessonsCompleted: 4, quizzesTaken: 1, aiQuestions: 12, studyTime: 90 },
-  { date: '2024-01-19', lessonsCompleted: 2, quizzesTaken: 0, aiQuestions: 6, studyTime: 50 },
-  { date: '2024-01-20', lessonsCompleted: 3, quizzesTaken: 1, aiQuestions: 9, studyTime: 75 },
-  { date: '2024-01-21', lessonsCompleted: 1, quizzesTaken: 0, aiQuestions: 4, studyTime: 35 },
+  { date: '2024-02-09', lessonsCompleted: 2, quizzesTaken: 1, aiQuestions: 5, studyTime: 45 },
+  { date: '2024-02-10', lessonsCompleted: 3, quizzesTaken: 0, aiQuestions: 8, studyTime: 60 },
+  { date: '2024-02-11', lessonsCompleted: 1, quizzesTaken: 2, aiQuestions: 3, studyTime: 40 },
+  { date: '2024-02-12', lessonsCompleted: 4, quizzesTaken: 1, aiQuestions: 12, studyTime: 90 },
+  { date: '2024-02-13', lessonsCompleted: 2, quizzesTaken: 0, aiQuestions: 6, studyTime: 50 },
+  { date: '2024-02-14', lessonsCompleted: 3, quizzesTaken: 1, aiQuestions: 9, studyTime: 75 },
+  { date: '2024-02-15', lessonsCompleted: 1, quizzesTaken: 0, aiQuestions: 4, studyTime: 35 },
 ];
 
 export function DashboardPage() {
@@ -72,7 +72,7 @@ export function DashboardPage() {
             </div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="flex flex-wrap gap-3">
               <Link to="/courses">
-                <Button variant="outline" className="gap-2"><BookOpen className="h-4 w-4" /> Browse Courses</Button>
+                <Button variant="outline" className="gap-2"><LayoutDashboard className="h-4 w-4" /> Browse Courses</Button>
               </Link>
               <Link to="/ai-tutor">
                 <Button variant="gradient" className="gap-2"><Bot className="h-4 w-4" /> Ask AI Tutor</Button>
@@ -117,8 +117,8 @@ export function DashboardPage() {
       {/* Main Content Tabs */}
       <section>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
-            {['overview', 'progress', 'calendar', 'achievements'].map(tab => (
+<div className="flex flex-wrap gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
+            {['overview', 'progress', 'calendar', 'achievements'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
@@ -152,10 +152,6 @@ export function DashboardPage() {
                       </Card.Header>
                       <Card.Content className="flex flex-col items-center py-8">
                         <ProgressCircle value={progressPercent} size={160} strokeWidth={12} showLabel label={`${progressPercent}%`} />
-                        <div className="mt-6 text-center">
-                          <p className="text-2xl font-bold text-gray-900 dark:text-white">{mockStats.completedLessons}/{mockStats.totalLessons}</p>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">Lessons Completed</p>
-                        </div>
                         <div className="mt-6 w-full space-y-3">
                           {[
                             { label: 'Modules', done: 8, total: 12 },
@@ -205,91 +201,89 @@ export function DashboardPage() {
                       </Card.Content>
                     </Card>
                   </motion.div>
-                </div>
-              )}
-            </motion.div>
-            
-              {activeTab === 'progress' && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-                  <Card>
-                    <Card.Header><Card.Title>Learning Progress</Card.Title></Card.Header>
-                    <Card.Content>
-                      <div className="grid md:grid-cols-3 gap-6">
-                        {progressData.slice(-7).reverse().map((day, index) => (
-                          <motion.div key={day.date} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
-                            <p className="text-sm font-medium text-gray-900 dark:text-white mb-2">{new Date(day.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</p>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between"><span className="text-gray-500">Lessons</span><span className="font-medium">{day.lessonsCompleted}</span></div>
-                              <div className="flex justify-between"><span className="text-gray-500">Quizzes</span><span className="font-medium">{day.quizzesTaken}</span></div>
-                              <div className="flex justify-between"><span className="text-gray-500">AI Questions</span><span className="font-medium">{day.aiQuestions}</span></div>
-                              <div className="flex justify-between"><span className="text-gray-500">Study Time</span><span className="font-medium">{day.studyTime} min</span></div>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </Card.Content>
-                  </Card>
-                </motion.div>
-              )}
+                )}
+              </div>
             )}
             
-              {activeTab === 'calendar' && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-                  <Card>
-                    <Card.Header><Card.Title>Upcoming Schedule</Card.Title></Card.Header>
-                    <Card.Content>
-                      <div className="space-y-3">
-                        {mockCalendarEvents.map(event => (
-                          <motion.div key={event.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
-                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${event.type === 'quiz' ? 'bg-red-100 text-red-600' : event.type === 'lesson' ? 'bg-blue-100 text-blue-600' : 'bg-green-100 text-green-600'} dark:bg-opacity-20`}>
-                              <Calendar className="h-6 w-6" />
-                            </div>
-                            <div className="flex-1">
-                              <p className="font-medium text-gray-900 dark:text-white">{event.title}</p>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">{event.type} • Grade {event.grade} • {new Date(event.date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
-                            </div>
-                            <Badge variant="outline">{event.type}</Badge>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </Card.Content>
-                  </Card>
-                </motion.div>
-              )}
+            {activeTab === 'progress' && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+                <Card>
+                  <Card.Header><Card.Title>Learning Progress</Card.Title></Card.Header>
+                  <Card.Content>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      {progressData.slice(-7).reverse().map((day, index) => (
+                        <motion.div key={day.date} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
+                          <p className="text-sm font-medium text-gray-900 dark:text-white mb-2">{new Date(day.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</p>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between"><span className="text-gray-500">Lessons</span><span className="font-medium">{day.lessonsCompleted}</span></div>
+                            <div className="flex justify-between"><span className="text-gray-500">Quizzes</span><span className="font-medium">{day.quizzesTaken}</span></div>
+                            <div className="flex justify-between"><span className="text-gray-500">AI Questions</span><span className="font-medium">{day.aiQuestions}</span></div>
+                            <div className="flex justify-between"><span className="text-gray-500">Study Time</span><span className="font-medium">{day.studyTime} min</span></div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </Card.Content>
+                </Card>
+              </motion.div>
+            )}
             
-              {activeTab === 'achievements' && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {mockAchievements.map((achievement, index) => (
-                      <motion.div key={achievement.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} className="group">
-                        <Card className={`h-full ${achievement.unlockedAt ? 'border-green-200 dark:border-green-800' : 'opacity-70'}`}>
-                          <Card.Content className="p-6">
-                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 ${achievement.unlockedAt ? '' : 'grayscale'} `} style={{ background: achievement.color }}>
-                              <achievement.icon className="h-8 w-8 text-white" />
+            {activeTab === 'calendar' && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+                <Card>
+                  <Card.Header><Card.Title>Upcoming Schedule</Card.Title></Card.Header>
+                  <Card.Content>
+                    <div className="space-y-3">
+                      {mockCalendarEvents.map(event => (
+                        <motion.div key={event.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
+                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${event.type === 'quiz' ? 'bg-red-100 text-red-600' : event.type === 'lesson' ? 'bg-blue-100 text-blue-600' : 'bg-green-100 text-green-600'} dark:bg-opacity-20`}>
+                            <Calendar className="h-6 w-6" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-medium text-gray-900 dark:text-white">{event.title}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">{event.type} • Grade {event.grade} • {new Date(event.date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+                          </div>
+                          <Badge variant="outline">{event.type}</Badge>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </Card.Content>
+                </Card>
+              </motion.div>
+            )}
+            
+            {activeTab === 'achievements' && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {mockAchievements.map((achievement, index) => (
+                    <motion.div key={achievement.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} className="group">
+                      <Card className={`h-full ${achievement.unlockedAt ? 'border-green-200 dark:border-green-800' : 'opacity-70'}`}>
+                        <Card.Content className="p-6">
+                          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 ${achievement.unlockedAt ? '' : 'grayscale'} `} style={{ background: achievement.color }}>
+                            <achievement.icon className="h-8 w-8 text-white" />
+                          </div>
+                          <h3 className="text-lg font-semibold text-center text-gray-900 dark:text-white mb-1">{achievement.title}</h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-4">{achievement.description}</p>
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-500">Progress</span>
+                              <span className="font-medium">{achievement.progress}/{achievement.maxProgress}</span>
                             </div>
-                            <h3 className="text-lg font-semibold text-center text-gray-900 dark:text-white mb-1">{achievement.title}</h3>
-                            <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-4">{achievement.description}</p>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-sm">
-                                <span className="text-gray-500">Progress</span>
-                                <span className="font-medium">{achievement.progress}/{achievement.maxProgress}</span>
-                              </div>
-                              <ProgressBar value={Math.min(100, Math.round((achievement.progress / achievement.maxProgress) * 100))} className="h-2" />
-                            </div>
-                            {achievement.unlockedAt && (
-                              <p className="mt-3 text-xs text-green-600 dark:text-green-400 text-center">
-                                Unlocked on {new Date(achievement.unlockedAt).toLocaleDateString()}
-                              </p>
-                            )}
-                          </Card.Content>
-                        </Card>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                            <ProgressBar value={Math.min(100, Math.round((achievement.progress / achievement.maxProgress) * 100))} className="h-2" />
+                          </div>
+                          {achievement.unlockedAt && (
+                            <p className="mt-3 text-xs text-green-600 dark:text-green-400 text-center">
+                              Unlocked on {new Date(achievement.unlockedAt).toLocaleDateString()}
+                            </p>
+                          )}
+                        </Card.Content>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
     </div>

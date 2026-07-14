@@ -73,6 +73,19 @@ export function NotFoundPage() {
             </Button>
           </div>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto"
+        >
+          <p>
+            <Link to="/courses" className="underline hover:text-primary-600 dark:hover:text-primary-400">Browse Courses</Link> |{' '}
+            <Link to="/ai-tutor" className="underline hover:text-primary-600 dark:hover:text-primary-400">Ask AI Tutor</Link> |{' '}
+            <Link to="/about" className="underline hover:text-primary-600 dark:hover:text-primary-400">About Us</Link>
+          </p>
+        </motion.div>
       </motion.div>
     </div>
   );

@@ -6,7 +6,7 @@ interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: 'primary' | 'secondary' | 'accent' | 'white';
 }
 
-export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
+const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
   ({ className, size = 'md', color = 'primary', ...props }, ref) => {
     const sizeClasses = {
       sm: 'h-4 w-4',
@@ -51,14 +51,14 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
 );
 Loader.displayName = 'Loader';
 
-export const Spinner = React.forwardRef<HTMLDivElement, LoaderProps>(
+const Spinner = React.forwardRef<HTMLDivElement, LoaderProps>(
   ({ className, size = 'md', color = 'primary', ...props }, ref) => (
     <Loader ref={ref} size={size} color={color} className={className} {...props} />
   )
 );
 Spinner.displayName = 'Spinner';
 
-export const LoadingDots = React.forwardRef<HTMLDivElement, LoaderProps>(
+const LoadingDots = React.forwardRef<HTMLDivElement, LoaderProps>(
   ({ className, size = 'md', color = 'primary', ...props }, ref) => {
     const sizeClasses = {
       sm: 'h-1.5 w-1.5',
@@ -97,7 +97,7 @@ interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: string | number;
 }
 
-export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
+const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
   ({ className, variant = 'text', width, height, ...props }, ref) => {
     const baseStyles = 'animate-pulse bg-gray-200 rounded dark:bg-gray-700';
     const variantStyles = {

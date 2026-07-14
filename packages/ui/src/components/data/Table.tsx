@@ -113,5 +113,4 @@ export {
   TableRow,
   TableCell,
   TableCaption,
-  TableFooter,
 };

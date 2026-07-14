@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Play, Zap, CheckCircle, TrendingUp, Award, Users, ArrowRight, Target, Shield, Zap as ZapIcon, Layers, Lock, Brain, Code, Database, Globe, Lock as LockIcon, GraduationCap, Sparkles, HelpCircle, Trophy, Medal, Flame, Star } from 'lucide-react';
+import { BookOpen, Play, Zap, Users, Award, TrendingUp, ArrowRight, Target, Shield, Zap as ZapIcon, Layers, Lock, Brain, Code, Database, Globe, Lock, Layers, GraduationCap, Sparkles, HelpCircle, Trophy, Medal, Flame, Star, Shield as ShieldIcon, Zap as ZapIcon, Layers as LayersIcon, Lock as LockIcon, GraduationCap as GraduationCapIcon, Bot } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button, Badge, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@it-master-ai/ui';
+import React from 'react';
 
 const features = [
   { icon: Brain, title: 'AI-Powered Learning', description: 'Personalized learning paths that adapt to your pace and style with our advanced AI tutor.', color: 'from-primary-500 to-primary-600' },
@@ -14,7 +15,7 @@ const stats = [
   { label: 'Students', value: '50,000+', icon: Users },
   { label: 'Lessons', value: '500+', icon: BookOpen },
   { label: 'Quizzes', value: '1,000+', icon: CheckCircle },
-  { label: 'AI Questions', value: '1M+', icon: BotIcon },
+  { label: 'AI Questions', value: '1M+', icon: Bot },
 ];
 
 const grades = [
@@ -84,7 +85,7 @@ export function HomePage() {
                     whileTap={{ scale: 0.98 }}
                     className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-xl font-semibold text-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                   >
-                    <BotIcon className="h-5 w-5" />
+                    <Bot className="h-5 w-5" />
                     Try AI Tutor
                   </motion.button>
                 </Link>
@@ -126,7 +127,7 @@ export function HomePage() {
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3 p-4 bg-primary-50 dark:bg-primary-900/30 rounded-xl">
-                      <BotIcon className="h-6 w-6 text-primary-600 dark:text-primary-400 mt-0.5 flex-shrink-0" />
+                      <Bot className="h-6 w-6 text-primary-600 dark:text-primary-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-gray-900 dark:text-white">AI Tutor</p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">How do I create a loop in Python?</p>
@@ -185,7 +186,6 @@ export function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -211,7 +211,7 @@ export function HomePage() {
                     <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 group-hover:scale-110 transition-transform`} style={{ background: feature.color }}>
                       <feature.icon className="h-6 w-6 text-white" />
                     </div>
-                    <Card.Title className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{feature.title}</Card.Title>
+                    <Card.Title className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{feature.title}</Card.Title>
                     <Card.Description className="text-gray-600 dark:text-gray-300">{feature.description}</Card.Description>
                   </Card.Header>
                 </Card>
@@ -272,11 +272,11 @@ export function HomePage() {
               >
                 <Card className="h-full hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300">
                   <Card.Header className="pb-3">
-                    <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="flex items-start justify-between">
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`} style={{ background: grade.color }}>
                         <grade.icon className="h-6 w-6 text-white" />
                       </div>
-                      <Badge variant="outline" className="text-xs self-center">{grade.grade}th Grade</Badge>
+                      <Badge variant="outline" className="text-xs self-center">Grade {grade.grade}</Badge>
                     </div>
                     <Card.Title className="text-xl font-bold text-gray-900 dark:text-white mb-1">Grade {grade.grade}</Card.Title>
                     <Card.Description className="text-primary-600 dark:text-primary-400 font-medium mb-4">{grade.title}</Card.Description>
@@ -299,7 +299,7 @@ export function HomePage() {
                     </div>
                     <div className="space-y-2">
                       <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
+                        <div className="flex justify-between text-sm">
                           <span className="text-gray-600 dark:text-gray-400">Progress</span>
                           <span className="font-medium text-gray-900 dark:text-white">0%</span>
                         </div>

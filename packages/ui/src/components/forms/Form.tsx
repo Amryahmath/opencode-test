@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as FormPrimitive from '@hookform/resolvers';
 import { cn } from '../../utils/classnames';
 
 const Form = React.forwardRef<HTMLFormElement, React.FormHTMLAttributes<HTMLFormElement>>(

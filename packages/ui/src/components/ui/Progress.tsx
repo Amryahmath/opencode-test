@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ProgressPrimitive from '@radix-ui/react-progress';
 import { cn } from '../../utils/classnames';
 
 interface ProgressCircleProps {
@@ -11,7 +12,7 @@ interface ProgressCircleProps {
   label?: string;
 }
 
-export const ProgressCircle: React.FC<ProgressCircleProps> = ({
+const ProgressCircle: React.FC<ProgressCircleProps> = ({
   value,
   max = 100,
   size = 120,
@@ -62,7 +63,7 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
   );
 };
 
-export const Progress = React.forwardRef<
+const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & { className?: string }
 >(({ className, value, max = 100, ...props }, ref) => (
@@ -86,4 +87,4 @@ export const Progress = React.forwardRef<
 ));
 Progress.displayName = ProgressPrimitive.Root.displayName;
 
-export { Progress };
+export { Progress, ProgressCircle };

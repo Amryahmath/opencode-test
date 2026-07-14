@@ -1,7 +1,4 @@
-export { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage, useFormField } from './Form';
-export { Input } from './Input';
-export { Textarea } from './Textarea';
-export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator } from './Select';
+export { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from './Form';
 export { Checkbox } from './Checkbox';
 export { RadioGroup, RadioGroupItem } from './RadioGroup';
 export { Switch } from './Switch';

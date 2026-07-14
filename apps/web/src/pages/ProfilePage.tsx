@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { User, Award, Settings, Camera, Mail, Bell, Shield, Palette, Save, X, CheckCircle, Loader2 } from 'lucide-react';
+import { User, Award, Settings, Camera, Mail, Bell, Shield, Palette, Save, X, CheckCircle, Loader2, School, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Button, Input, Badge, Card, Tabs, TabsList, TabsTrigger, TabsContent, Select } from '@it-master-ai/ui';
-import { useAuth } from '../context/AuthContext';
+import { Button, Input, Badge, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Tabs, TabsList, TabsTrigger, TabsContent, Select } from '@it-master-ai/ui';
+import { useAuth } from '../../context/AuthContext';
 
 const mockCertificates = [
   { id: '1', title: 'Grade 7 Programming Fundamentals', grade: 7, issuedAt: '2024-01-15', certificateUrl: '#' },
@@ -142,8 +142,19 @@ export function ProfilePage() {
                             </Select.Content>
                           </Select>
                           <div className="flex gap-3 pt-4">
-                            <Button onClick={handleSaveProfile} disabled={saving} variant="gradient">
-                              {saving ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <>Save Changes <CheckCircle className="h-4 w-4 ml-2" /></Button>
+<Button onClick={handleSaveProfile} disabled={saving} variant="gradient">
+                            {saving ? (
+                              <>
+                                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                                Saving...
+                              </>
+                            ) : (
+                              <>
+                                Save Changes
+                                <CheckCircle className="h-4 w-4 ml-2" />
+                              </>
+                            )}
+                          </Button>
                             <Button variant="ghost" onClick={() => { setFormData({ name: user.name, school: user.school, grade: user.grade }); setIsEditing(false); }}>Cancel</Button>
                           </div>
                         </div>
@@ -248,17 +259,17 @@ export function ProfilePage() {
                         <Button variant="outline" className="w-full justify-start">Two-Factor Authentication</Button>
                         <Button variant="destructive" className="w-full justify-start">Delete Account</Button>
                       </Card.Content>
-                    </Card>
-                  </div>
-                </TabsContent>
-              </Tabs>
-            </main>
+</Card>
+                      </TabsContent>
+                    </Tabs>
+                    </div>
+                  </main>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </section>
     </div>
   );
 }
-
-// Need to import missing icons
-import { Download } from 'lucide-react';
