@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import type { User, AuthTokens, LoginCredentials, RegisterData } from '@it-master-ai/types';
-import { api } from '../services/api';
 
 interface AuthContextType {
   user: User | null;
@@ -41,15 +40,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (credentials: LoginCredentials) => {
     setIsLoading(true);
     try {
-      const response = await api.post<{ user: User; tokens: AuthTokens }>('/auth/login', credentials);
-      if (response.data.success && response.data.data) {
-        const { user: userData, tokens } = response.data.data;
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials),
+      });
+      const data = await response.json();
+      if (data.success && data.data) {
+        const { user: userData, tokens } = data.data;
         localStorage.setItem('accessToken', tokens.accessToken);
         localStorage.setItem('refreshToken', tokens.refreshToken);
         localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
       } else {
-        throw new Error(response.data.message || 'Login failed');
+        throw new Error(data.message || 'Login failed');
       }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Login failed';
@@ -62,15 +66,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (data: RegisterData) => {
     setIsLoading(true);
     try {
-      const response = await api.post<{ user: User; tokens: AuthTokens }>('/auth/register', data);
-      if (response.data.success && response.data.data) {
-        const { user: userData, tokens } = response.data.data;
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const data = await response.json();
+      if (data.success && data.data) {
+        const { user: userData, tokens } = data.data;
         localStorage.setItem('accessToken', tokens.accessToken);
         localStorage.setItem('refreshToken', tokens.refreshToken);
         localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
       } else {
-        throw new Error(response.data.message || 'Registration failed');
+        throw new Error(data.message || 'Registration failed');
       }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Registration failed';

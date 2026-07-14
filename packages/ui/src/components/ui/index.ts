@@ -6,4 +6,4 @@ export { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 export { Modal, ModalTrigger, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalFooter, ModalClose } from './Modal';
 export { Toast, ToastProvider, useToast } from './Toast';
 export { Loader, Spinner, LoadingDots, Skeleton } from './Loader';
-export { ProgressBar, ProgressCircle } from './Progress';
+export { Progress, ProgressCircle } from './Progress';
