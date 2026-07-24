@@ -24,6 +24,20 @@ pnpm install
 pnpm dev
 ```
 
+## Startup
+
+1. Copy `.env.example` to `.env` at the repository root.
+2. Install dependencies with `pnpm install`.
+3. Start both apps with `pnpm dev`.
+4. Open the web app at `http://localhost:5173` and the API at `http://localhost:4000`.
+
+## Environment
+
+- `PORT` controls the Express server port.
+- `CORS_ORIGIN` should match the web app origin during local development.
+- `JWT_SECRET` is reserved for future auth token signing.
+- `VITE_API_URL` points the frontend to the API base URL.
+
 ## API endpoints
 
 - `GET /api/courses`
@@ -39,3 +53,4 @@ pnpm dev
 ## Design goals
 
 Premium, mobile-first, glassmorphism UI with gradients, rounded cards, loading states, and future-ready service boundaries for PostgreSQL, MongoDB, OpenAI, Gemini, Claude, Groq, payments, email, and notifications.
+
