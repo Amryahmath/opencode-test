@@ -1,0 +1,8 @@
+node_modules
+dist
+build
+.turbo
+.vite
+.DS_Store
+.env
+.env.*

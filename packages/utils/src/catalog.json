@@ -1,0 +1,173 @@
+{
+  "grades": [
+    { "grade": 6, "title": "Grade 6", "difficulty": "Beginner", "modules": ["Digital citizenship", "Computer basics", "Typing skills"], "lessons": 12, "progress": 92, "estimatedDuration": "4h" },
+    { "grade": 7, "title": "Grade 7", "difficulty": "Beginner", "modules": ["Hardware and software", "Files and folders", "Safe internet"], "lessons": 14, "progress": 81, "estimatedDuration": "5h" },
+    { "grade": 8, "title": "Grade 8", "difficulty": "Intermediate", "modules": ["Docs and spreadsheets", "Internet research", "Intro to coding"], "lessons": 16, "progress": 78, "estimatedDuration": "6h" },
+    { "grade": 9, "title": "Grade 9", "difficulty": "Intermediate", "modules": ["Programming logic", "HTML and CSS", "Data handling"], "lessons": 18, "progress": 69, "estimatedDuration": "7h" },
+    { "grade": 10, "title": "Grade 10", "difficulty": "Advanced", "modules": ["Networking", "Databases", "Web apps"], "lessons": 20, "progress": 57, "estimatedDuration": "8h" },
+    { "grade": 11, "title": "Grade 11", "difficulty": "Advanced", "modules": ["Algorithms", "Cybersecurity", "Project builds"], "lessons": 22, "progress": 44, "estimatedDuration": "9h" }
+  ],
+  "courses": [
+    { "grade": 6, "title": "Digital Foundations", "summary": "Build confidence with hardware, software, and safe online habits.", "difficulty": "Beginner", "modules": ["Hardware tour", "Operating systems", "Internet safety"], "lessons": 12, "progress": 92, "estimatedDuration": "4h" },
+    { "grade": 7, "title": "Computing Essentials", "summary": "Learn how computers store, process, and organize information.", "difficulty": "Beginner", "modules": ["Storage", "File systems", "Responsible usage"], "lessons": 14, "progress": 81, "estimatedDuration": "5h" },
+    { "grade": 8, "title": "Productivity and Logic", "summary": "Use digital tools to create content and solve practical problems.", "difficulty": "Intermediate", "modules": ["Documents", "Spreadsheets", "Problem solving"], "lessons": 16, "progress": 78, "estimatedDuration": "6h" },
+    { "grade": 9, "title": "Web and Programming Basics", "summary": "Begin building websites and structured thinking patterns.", "difficulty": "Intermediate", "modules": ["HTML", "CSS", "Programming logic"], "lessons": 18, "progress": 69, "estimatedDuration": "7h" },
+    { "grade": 10, "title": "Data and Networks", "summary": "Explore internet infrastructure, databases, and modern workflows.", "difficulty": "Advanced", "modules": ["Networking", "Databases", "APIs"], "lessons": 20, "progress": 57, "estimatedDuration": "8h" },
+    { "grade": 11, "title": "AI and Cybersecurity", "summary": "Work through algorithms, secure systems, and real-world projects.", "difficulty": "Advanced", "modules": ["Algorithms", "Security", "Capstone"], "lessons": 22, "progress": 44, "estimatedDuration": "9h" }
+  ],
+  "lessons": [
+    { "id": "g6-l1", "grade": 6, "title": "Parts of a Computer", "topic": "Hardware", "difficulty": "Beginner", "duration": "20m", "progress": 100 },
+    { "id": "g6-l2", "grade": 6, "title": "Safe Passwords", "topic": "Security", "difficulty": "Beginner", "duration": "18m", "progress": 88 },
+    { "id": "g7-l1", "grade": 7, "title": "Storage Devices", "topic": "Hardware", "difficulty": "Beginner", "duration": "22m", "progress": 76 },
+    { "id": "g7-l2", "grade": 7, "title": "Folders and Files", "topic": "Organization", "difficulty": "Beginner", "duration": "25m", "progress": 68 },
+    { "id": "g8-l1", "grade": 8, "title": "Document Design", "topic": "Productivity", "difficulty": "Intermediate", "duration": "24m", "progress": 70 },
+    { "id": "g8-l2", "grade": 8, "title": "Spreadsheet Formulas", "topic": "Productivity", "difficulty": "Intermediate", "duration": "28m", "progress": 63 },
+    { "id": "g9-l1", "grade": 9, "title": "HTML Structure", "topic": "Web", "difficulty": "Intermediate", "duration": "30m", "progress": 51 },
+    { "id": "g9-l2", "grade": 9, "title": "CSS Layout", "topic": "Web", "difficulty": "Intermediate", "duration": "32m", "progress": 48 }
+  ],
+  "quizzes": [
+    {
+      "id": "g6-q1",
+      "grade": 6,
+      "title": "Hardware Basics",
+      "timeLimit": "10m",
+      "questions": [
+        { "question": "Which part stores files long term?", "options": [{ "label": "RAM" }, { "label": "SSD", "correct": true }, { "label": "Cache" }, { "label": "CPU" }], "explanation": "SSDs keep data even when power is off." },
+        { "question": "Which habit is safest online?", "options": [{ "label": "Share passwords" }, { "label": "Click unknown links" }, { "label": "Use strong passwords", "correct": true }, { "label": "Post your address" }], "explanation": "Strong passwords reduce account takeover risk." },
+        { "question": "What does a mouse do?", "options": [{ "label": "Prints pages" }, { "label": "Controls the pointer", "correct": true }, { "label": "Stores files" }, { "label": "Makes music" }], "explanation": "A mouse is an input device for pointing and clicking." }
+      ],
+      "leaderboard": [
+        { "name": "Nila", "score": 98, "streak": 12 },
+        { "name": "Arin", "score": 94, "streak": 10 },
+        { "name": "Maya", "score": 91, "streak": 9 }
+      ]
+    },
+    {
+      "id": "g8-q1",
+      "grade": 8,
+      "title": "Productivity Quiz",
+      "timeLimit": "12m",
+      "questions": [
+        { "question": "Which tool is best for formulas and charts?", "options": [{ "label": "Slides" }, { "label": "Spreadsheet", "correct": true }, { "label": "Paint" }, { "label": "Camera" }], "explanation": "Spreadsheets support data analysis and visualization." },
+        { "question": "What is a good first step before creating a report?", "options": [{ "label": "Plan the outline", "correct": true }, { "label": "Choose random colors" }, { "label": "Delete all margins" }, { "label": "Ignore sources" }], "explanation": "Planning helps structure the work." },
+        { "question": "Which file is easiest to share with teachers?", "options": [{ "label": "Final PDF", "correct": true }, { "label": "Broken link" }, { "label": "Empty folder" }, { "label": "Draft note" }], "explanation": "PDFs preserve layout across devices." }
+      ],
+      "leaderboard": [
+        { "name": "Ishaan", "score": 96, "streak": 14 },
+        { "name": "Riya", "score": 93, "streak": 11 },
+        { "name": "Zara", "score": 90, "streak": 8 }
+      ]
+    }
+  ],
+  "resources": [
+    { "id": "r1", "title": "IT Safety Handbook", "type": "PDF", "category": "Notes", "grade": 6, "format": "PDF", "detail": "18 pages" },
+    { "id": "r2", "title": "Typing Speed Drills", "type": "Video", "category": "Video", "grade": 6, "format": "MP4", "detail": "12 minutes" },
+    { "id": "r3", "title": "Folder Management Cheatsheet", "type": "PDF", "category": "Downloads", "grade": 7, "format": "PDF", "detail": "Quick reference" },
+    { "id": "r4", "title": "Spreadsheet Formula Lab", "type": "Video", "category": "Video", "grade": 8, "format": "MP4", "detail": "21 minutes" },
+    { "id": "r5", "title": "HTML Starter Notes", "type": "Notes", "category": "Notes", "grade": 9, "format": "MD", "detail": "Code examples" },
+    { "id": "r6", "title": "Network Diagram Pack", "type": "Download", "category": "Downloads", "grade": 10, "format": "ZIP", "detail": "Templates" },
+    { "id": "r7", "title": "Cybersecurity Checklist", "type": "PDF", "category": "PDF", "grade": 11, "format": "PDF", "detail": "Security workflow" },
+    { "id": "r8", "title": "AI Ethics Reading List", "type": "Notes", "category": "Notes", "grade": 11, "format": "MD", "detail": "Curated links" }
+  ],
+  "teachers": [
+    { "name": "Ayesha Rahman", "role": "Senior IT Instructor", "specialization": "Digital literacy", "experience": "12 years", "quote": "We teach students to create, question, and build with confidence.", "badge": "AR" },
+    { "name": "Mohan Silva", "role": "Coding Mentor", "specialization": "Web development", "experience": "10 years", "quote": "Every lesson should feel like a small win.", "badge": "MS" },
+    { "name": "Nina Perera", "role": "AI Learning Coach", "specialization": "AI tutoring", "experience": "8 years", "quote": "AI works best when it helps a student think more clearly.", "badge": "NP" },
+    { "name": "Imran Khan", "role": "Cybersecurity Lead", "specialization": "Security and networks", "experience": "14 years", "quote": "Security is a habit, not a feature.", "badge": "IK" }
+  ],
+  "stats": [
+    { "label": "Students", "value": "12,400", "description": "Active learners across Grade 6-11" },
+    { "label": "Lessons", "value": "860", "description": "Structured lessons and guided labs" },
+    { "label": "Quizzes", "value": "430", "description": "Adaptive practice and review" },
+    { "label": "AI Questions Answered", "value": "125k", "description": "Tutor conversations and help requests" }
+  ],
+  "timeline": [
+    { "year": "2018", "title": "Institute founded", "detail": "Started with a small digital literacy program for middle school students." },
+    { "year": "2020", "title": "AI assisted practice", "detail": "Introduced guided assessments and instant feedback." },
+    { "year": "2023", "title": "Grade 6-11 expansion", "detail": "Built a complete progression model for upper primary and secondary students." },
+    { "year": "2026", "title": "IT Master AI launch", "detail": "Released the premium learning experience with tutor, quizzes, and dashboards." }
+  ],
+  "practiceTopics": [
+    { "id": "p1", "grade": 6, "topic": "Keyboard shortcuts", "difficulty": "Easy", "duration": "12m", "focus": "Productivity" },
+    { "id": "p2", "grade": 7, "topic": "File naming and storage", "difficulty": "Easy", "duration": "15m", "focus": "Organization" },
+    { "id": "p3", "grade": 8, "topic": "Spreadsheet formulas", "difficulty": "Medium", "duration": "18m", "focus": "Data" },
+    { "id": "p4", "grade": 9, "topic": "HTML cards and forms", "difficulty": "Medium", "duration": "20m", "focus": "Web" },
+    { "id": "p5", "grade": 10, "topic": "Network topologies", "difficulty": "Hard", "duration": "22m", "focus": "Infrastructure" },
+    { "id": "p6", "grade": 11, "topic": "Cyber hygiene audit", "difficulty": "Hard", "duration": "25m", "focus": "Security" }
+  ],
+  "profile": {
+    "name": "Ayaan Silva",
+    "grade": "Grade 8",
+    "school": "IT Master AI Academy",
+    "progress": 78,
+    "certificates": 5,
+    "streak": 14,
+    "completedLessons": 48,
+    "favoriteTopic": "Cyber safety",
+    "goals": ["Build confidence", "Finish Python basics", "Earn one more certificate"],
+    "settings": { "darkMode": true, "notifications": true }
+  },
+  "dashboard": {
+    "completedLessons": 48,
+    "currentGrade": "Grade 8",
+    "quizResults": [
+      { "label": "Completed", "value": "32", "description": "Quizzes finished this term" },
+      { "label": "Average Score", "value": "87%", "description": "Across the latest practice sets" },
+      { "label": "Mastered", "value": "24", "description": "Topics unlocked with full confidence" }
+    ],
+    "aiUsage": [
+      { "label": "Tutor chats", "value": "96", "description": "Weekly AI questions answered" },
+      { "label": "Hints used", "value": "124", "description": "Guided learning nudges" },
+      { "label": "Files reviewed", "value": "37", "description": "Resources and uploads analyzed" }
+    ],
+    "recentActivity": [
+      { "title": "Completed spreadsheet lesson", "detail": "Grade 8 - Lesson 5", "time": "2 hours ago" },
+      { "title": "Asked AI Tutor about HTML forms", "detail": "Got 3 guided hints", "time": "Yesterday" },
+      { "title": "Scored 94% on hardware quiz", "detail": "Grade 7 revision", "time": "2 days ago" }
+    ],
+    "calendar": [
+      { "day": "Mon", "label": "Quiz review", "accent": "emerald" },
+      { "day": "Tue", "label": "AI tutor lab", "accent": "cyan" },
+      { "day": "Wed", "label": "Practice sprint", "accent": "amber" },
+      { "day": "Thu", "label": "Teacher office hour", "accent": "blue" },
+      { "day": "Fri", "label": "Project demo", "accent": "rose" }
+    ],
+    "achievements": [
+      { "title": "Safe Browser", "detail": "Kept a 30-day digital safety streak" },
+      { "title": "Quiz Climber", "detail": "Improved by 12 points this month" },
+      { "title": "Course Explorer", "detail": "Sampled every grade preview" }
+    ]
+  },
+  "suggestedQuestions": [
+    "Explain the difference between RAM and storage.",
+    "Help me revise HTML forms.",
+    "Give me 3 practice questions for cybersecurity.",
+    "Summarize spreadsheet formulas for Grade 8.",
+    "How do I build a study plan for Grade 10 networking?"
+  ],
+  "chatThreads": [
+    {
+      "id": "chat-1",
+      "title": "Intro to hardware",
+      "updatedAt": "Today",
+      "messages": [
+        { "id": "m1", "role": "assistant", "content": "Welcome back. Ask me anything about hardware, coding, or study strategy.", "timestamp": "09:12" },
+        { "id": "m2", "role": "user", "content": "What is the CPU?", "timestamp": "09:13" },
+        { "id": "m3", "role": "assistant", "content": "The CPU is the computer's brain. It executes instructions and controls most processing tasks.", "timestamp": "09:13" }
+      ]
+    },
+    {
+      "id": "chat-2",
+      "title": "HTML revision",
+      "updatedAt": "Yesterday",
+      "messages": [
+        { "id": "m4", "role": "assistant", "content": "Try using semantic HTML tags like header, main, and footer.", "timestamp": "16:20" }
+      ]
+    }
+  ],
+  "leaderboard": [
+    { "name": "Nila", "score": 98, "streak": 12 },
+    { "name": "Ishaan", "score": 96, "streak": 14 },
+    { "name": "Riya", "score": 93, "streak": 11 }
+  ]
+}
