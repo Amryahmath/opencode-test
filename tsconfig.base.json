@@ -8,13 +8,8 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "ignoreDeprecations": "5.0",
     "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "@it-master-ai/types": ["packages/types/src"],
-      "@it-master-ai/utils": ["packages/utils/src"],
-      "@it-master-ai/ui": ["packages/ui/src"]
-    }
+    "forceConsistentCasingInFileNames": true
   }
 }

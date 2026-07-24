@@ -1,4 +1,5 @@
-import { NavLink, Outlet, Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { NavLink, Outlet, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, CalendarDays, CheckCircle2, ChevronRight, Clock3, LayoutDashboard, LogOut, Menu, MoonStar, Plus, Rocket, Send, ShieldCheck, Sparkles, SunMedium, Trash2, Trophy, UserRound } from 'lucide-react';
 import type { ChatMessage, Course, Dashboard, Grade, LeaderboardEntry, Lesson, PracticeTopic, Quiz, Resource, StudentProfile, Teacher, TimelineItem } from '@it-master-ai/types';
@@ -11,13 +12,14 @@ import { useTheme } from './context/ThemeContext';
 export const MainLayout = () => {
   const { darkMode, toggleTheme } = useTheme();
   const { user, logout } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.12),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(37,99,235,0.14),_transparent_26%)]" />
-      <Navbar darkMode={darkMode} onToggleTheme={toggleTheme} onSignOut={logout} signedIn={Boolean(user)} />
+      <Navbar darkMode={darkMode} onToggleTheme={toggleTheme} onSignOut={logout} signedIn={Boolean(user)} mobileMenuOpen={mobileMenuOpen} onToggleMobileMenu={() => setMobileMenuOpen((current) => !current)} onCloseMobileMenu={() => setMobileMenuOpen(false)} />
 
-      <main className="relative mx-auto min-h-screen max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <main className="relative mx-auto min-h-screen max-w-7xl px-4 py-8 sm:px-6 lg:px-8" onClick={() => setMobileMenuOpen(false)}>
         <Outlet />
       </main>
 
@@ -26,7 +28,7 @@ export const MainLayout = () => {
   );
 };
 
-export const Navbar = ({ darkMode, onToggleTheme, onSignOut, signedIn }: { darkMode: boolean; onToggleTheme: () => void; onSignOut: () => void; signedIn: boolean }) => (
+export const Navbar = ({ darkMode, onToggleTheme, onSignOut, signedIn, mobileMenuOpen, onToggleMobileMenu, onCloseMobileMenu }: { darkMode: boolean; onToggleTheme: () => void; onSignOut: () => void; signedIn: boolean; mobileMenuOpen: boolean; onToggleMobileMenu: () => void; onCloseMobileMenu: () => void }) => (
   <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/60 backdrop-blur-xl">
     <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
       <Link to="/" className="flex items-center gap-3">
@@ -48,7 +50,7 @@ export const Navbar = ({ darkMode, onToggleTheme, onSignOut, signedIn }: { darkM
       </nav>
 
       <div className="flex items-center gap-2">
-        <button className="rounded-2xl border border-white/10 bg-white/5 p-3 text-slate-200 transition hover:bg-white/10 lg:hidden">
+        <button type="button" aria-label="Open navigation menu" aria-expanded={mobileMenuOpen} onClick={onToggleMobileMenu} className="rounded-2xl border border-white/10 bg-white/5 p-3 text-slate-200 transition hover:bg-white/10 lg:hidden">
           <Menu className="h-4 w-4" />
         </button>
         <button onClick={onToggleTheme} className="rounded-2xl border border-white/10 bg-white/5 p-3 text-slate-200 transition hover:bg-white/10" aria-label="Toggle theme">
@@ -67,6 +69,18 @@ export const Navbar = ({ darkMode, onToggleTheme, onSignOut, signedIn }: { darkM
         )}
       </div>
     </div>
+
+    {mobileMenuOpen ? (
+      <div className="border-t border-white/10 bg-slate-950/90 px-4 py-4 lg:hidden" onClick={(event) => event.stopPropagation()}>
+        <nav className="grid gap-2">
+          {navigation.map((item) => (
+            <NavLink key={item.path} to={item.path} onClick={onCloseMobileMenu} className={({ isActive }) => cn('rounded-2xl px-4 py-3 text-sm transition', isActive ? 'bg-white/12 text-white' : 'text-slate-300 hover:bg-white/8 hover:text-white')}>
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+      </div>
+    ) : null}
   </header>
 );
 
